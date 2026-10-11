@@ -1,41 +1,53 @@
 # Council
 
-A council of AI models that runs entirely on one machine, the **ASUS Ascent GX10**, built for the GX10 hackathon.
+**High-quality AI answers without paying for a frontier model, and without your data ever leaving the building.**
 
-You ask a question or hand it a task. Several different open models from different labs answer on their own, read
-each other's answers with the names hidden, and vote until 80% of them agree. For a build task, the agreed plan is cut
-into small jobs for fast worker models, every result is checked automatically, and the council reviews the work before
-anything is written to your folder. Afterwards the council decides what is worth remembering about you and your
-project.
+Council runs a group of small and medium open models on one local machine, the **ASUS Ascent GX10**. Instead of
+trusting a single model, it has several models from different labs answer the same question and debate until they
+agree, and a lie detector checks their claims so hallucinations are caught before they reach the answer. Built for
+the GX10 hackathon.
 
-Nothing leaves the machine. There is no cloud and no per-token bill, so the council can afford to spend a lot of
-thinking on every decision.
+## The problem
 
-## Why a council
+- **Frontier models are expensive.** Many people and teams want high-quality AI output but cannot afford the
+  continuous cost of a big frontier model.
+- **Many cannot use the cloud at all.** Companies with sensitive data are often legally barred from letting it leave
+  their own network, so even enterprise zero-data-retention (ZDR) contracts are not an option.
+- **One local model is not enough.** A single small or medium model running locally has blind spots on specific kinds
+  of tasks, and sometimes reasons its way to a wrong answer.
 
-The GX10 has a lot of memory (about 121 GiB) but modest memory bandwidth (about 273 GB/s). That is a poor fit for one
-giant model and a good fit for many medium models loaded at the same time, which is exactly what a council needs. The
-point is better answers, not faster ones: different models have different blind spots, and making them argue and vote
-catches mistakes a single model would make.
+## Our answer
 
-The benchmark (`council.cli bench` and `compare`) exists to check that claim honestly: the council against each
-member answering alone, against the biggest single model, against one model asked several times, against a plain
-vote with no debate, and against random lineups. See `docs/ARCHITECTURE.md` section 1.3.
+- **A council instead of one model.** Several small and medium models from different labs, each with different
+  strengths and weaknesses, answer the same question on their own, then debate it until they agree. One model's gap
+  or faulty reasoning gets caught by the others.
+- **A lie detector against hallucinations.** Every claim in every answer gets a truth score, built from how the model
+  behaves (hedging, how consistent its answers are), its track record, and, once trained for that model, a probe that
+  reads the model's internal activations. Claims that look false are flagged to the council before it decides.
+- **Fully local and private.** Everything runs on one machine; its 121 GiB of memory holds several models at once.
+  No cloud, no per-token bill, nothing leaves the building, so the council can afford to think hard about every
+  question.
+
+The benchmark (`council.cli bench` and `compare`) checks the claim honestly: the council against each member
+answering alone, against the biggest single model, and against simpler setups such as a plain vote with no debate.
+See `docs/ARCHITECTURE.md` section 1.3.
 
 ## How a run works
 
 1. **Profile.** The task is described: what kind of task, how hard, what it needs.
 2. **Convene.** A router picks 2 to 6 models (the "seats") whose strengths fit this task, and loads them.
 3. **Blind drafts.** Every seat answers alone.
-4. **Debate.** Seats review each other's drafts with names removed, test claims that can be checked (run the code,
+4. **Lie check.** The lie detector scores each claim in the drafts and flags the ones that look false. A seat whose
+   answer stands out from the rest can be cross-examined.
+5. **Debate.** Seats review each other's drafts with names removed, test claims that can be checked (run the code,
    compute the number), and vote.
-5. **Decision.** 80% agreement wins. Otherwise a majority at the deadline, or a chair model decides, or the council
-   asks you. The losing view is always kept as a minority report.
-6. **Delegate** (build tasks). The plan becomes small jobs that worker models do in parallel. Each result is checked
+6. **Decision.** The council agrees when 80% of the seats back the same answer. If time runs out first, a majority
+   wins, or a chair model decides, or the council asks you. The losing view is always kept as a minority report.
+7. **Delegate** (build tasks). The plan becomes small jobs that worker models do in parallel. Each result is checked
    by structure, then by the task's own test commands, then by a model if nothing else can check it.
-7. **Review.** The council looks at the work and accepts it, asks for fixes, or replans. Accepted work is copied into
+8. **Review.** The council looks at the work and accepts it, asks for fixes, or replans. Accepted work is copied into
    your folder.
-8. **Remember.** A small panel decides what the run taught it and writes that to the Chronicle, with evidence.
+9. **Remember.** A small panel decides what the run taught it and writes that to the Chronicle, with evidence.
    Nothing is remembered just because you said it once.
 
 Every step emits events. The app, the command line and the benchmark all watch the same event stream.
@@ -173,7 +185,9 @@ steering experiment on Granite 4.1 8B (`tools/box/steer_test.py`).
 
 **Proven in mock mode only** (the code runs and the tests pass, but no real numbers yet): the llama.cpp driver running
 a full council, the lie-detector probes, the memory plan, speculative decoding, real runs at every council size, and
-the council-versus-solo comparison. `docs/V15.md` lists each one and the box run that will prove it.
+the council-versus-solo comparison. `docs/V15.md` lists each one and the box run that will prove it. Until a model's
+probe is trained and passes its checks, the lie detector scores claims from behaviour signals and track record only,
+and says so in its report (`docs/LIE_DETECTOR.md`).
 
 ## Working on the code
 
