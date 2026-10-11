@@ -163,7 +163,7 @@ loading that file; the Ollama driver stays as a fallback (`[host] driver` in the
 | `tools/box/` | Scripts for the GX10: start, check, test and stop models; run the app. See `tools/box/README.md`. |
 | `tools/deploy.sh` | Copies `main-dev/` from the development machine to the box. |
 | `tap/` | `actdump.cpp`, the "neuron tap" that reads a model's hidden activations through llama.cpp. |
-| `ui_partner/` | The GX10 Council desktop app (React + Electron) that `run_app.sh` serves. |
+| `ui_partner/` | The Syndicate desktop app (React + Electron) that `run_app.sh` serves. |
 | `ui/` | The first Electron + React UI, built directly against the API. |
 | `bench/`, `runs/`, `db/`, `adapters/` | Generated on the box: benchmark results, run data, the database, steering vectors. |
 
