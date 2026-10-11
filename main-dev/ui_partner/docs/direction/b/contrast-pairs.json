@@ -1,0 +1,973 @@
+{
+ "name": "Look B, Fair Copy: study pairs",
+ "pairs": [
+  {
+   "pair": "Body text (ink) on page: question, table caption on stage",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#E5ECE4",
+   "min": 4.5
+  },
+  {
+   "pair": "Body text (ink) on surface: answer sheet, bubbles, table top, pill, message box",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#F5F8F4",
+   "min": 4.5
+  },
+  {
+   "pair": "Text (ink) on sunk: sidebar items",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#DBE2D9",
+   "min": 4.5
+  },
+  {
+   "pair": "Muted text on page: margin column (You, Time limit), docket meta",
+   "theme": "light",
+   "fg": "#515963",
+   "bg": "#E5ECE4",
+   "min": 4.5
+  },
+  {
+   "pair": "Muted text on surface: Round label on table, placeholder, margin notes in answer sheet",
+   "theme": "light",
+   "fg": "#515963",
+   "bg": "#F5F8F4",
+   "min": 4.5
+  },
+  {
+   "pair": "Muted text on sunk: sidebar note, Theme value",
+   "theme": "light",
+   "fg": "#515963",
+   "bg": "#DBE2D9",
+   "min": 4.5
+  },
+  {
+   "pair": "Label on main button: Send (on-ink on ink)",
+   "theme": "light",
+   "fg": "#F5F8F4",
+   "bg": "#1A2435",
+   "min": 4.5
+  },
+  {
+   "pair": "Active switch label (mark) on mark-wash: Table",
+   "theme": "light",
+   "fg": "#67298C",
+   "bg": "#ECDFF7",
+   "min": 4.5
+  },
+  {
+   "pair": "Graphic: active switch edge (mark) on page",
+   "theme": "light",
+   "fg": "#67298C",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Agreed colour as text on page: heading Agreed 4 of 5 on docket",
+   "theme": "light",
+   "fg": "#136239",
+   "bg": "#E5ECE4",
+   "min": 4.5
+  },
+  {
+   "pair": "Agreed colour as text on surface",
+   "theme": "light",
+   "fg": "#136239",
+   "bg": "#F5F8F4",
+   "min": 4.5
+  },
+  {
+   "pair": "Error colour as text on page (not drawn in study)",
+   "theme": "light",
+   "fg": "#A12628",
+   "bg": "#E5ECE4",
+   "min": 4.5
+  },
+  {
+   "pair": "Error colour as text on surface (not drawn in study)",
+   "theme": "light",
+   "fg": "#A12628",
+   "bg": "#F5F8F4",
+   "min": 4.5
+  },
+  {
+   "pair": "Graphic: speaker mark (mark ring) on page",
+   "theme": "light",
+   "fg": "#67298C",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: focus ring (ink) on page: box round whole figure, buttons",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: focus ring (ink) on sunk: sidebar buttons",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#DBE2D9",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: bubble edge (outline) on its fill (surface)",
+   "theme": "light",
+   "fg": "#717E76",
+   "bg": "#F5F8F4",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: bubble edge and stem line (outline) on page",
+   "theme": "light",
+   "fg": "#717E76",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: table edge (outline) on page",
+   "theme": "light",
+   "fg": "#717E76",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: table edge (outline) on table top (surface)",
+   "theme": "light",
+   "fg": "#717E76",
+   "bg": "#F5F8F4",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: button, chip, docket and message box edge (outline) on page",
+   "theme": "light",
+   "fg": "#717E76",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: chip edge (outline) on surface: files cited",
+   "theme": "light",
+   "fg": "#717E76",
+   "bg": "#F5F8F4",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: New chat button edge (outline) on sunk",
+   "theme": "light",
+   "fg": "#717E76",
+   "bg": "#DBE2D9",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: tally filled stroke and underline (ink) on surface",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#F5F8F4",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: tally hollow stroke (outline) on surface",
+   "theme": "light",
+   "fg": "#717E76",
+   "bg": "#F5F8F4",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: tally hollow stroke (outline) on page: docket",
+   "theme": "light",
+   "fg": "#717E76",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: ruled-off tally (agreed) on page: docket",
+   "theme": "light",
+   "fg": "#136239",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: ruled-off tally (agreed) on surface: pill",
+   "theme": "light",
+   "fg": "#136239",
+   "bg": "#F5F8F4",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: vote check, pale check (surface) on solid ink disc",
+   "theme": "light",
+   "fg": "#F5F8F4",
+   "bg": "#1A2435",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: vote cross, ink outline and ink cross on pale disc (surface)",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#F5F8F4",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: vote disc (ink) against its 2 px halo (page)",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Fading bubble at half strength (leaving the screen): text at 50% on surface. Full strength is the body text pair",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#F5F8F4",
+   "min": 3,
+   "alpha": 0.5
+  },
+  {
+   "pair": "Seat 1 Blue: name (ink) on its head tint",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#D3E2E7",
+   "min": 4.5
+  },
+  {
+   "pair": "Seat 1 Blue: figure ring against page",
+   "theme": "light",
+   "fg": "#015B94",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Seat 1 Blue: ring and line pattern on its own tint",
+   "theme": "light",
+   "fg": "#015B94",
+   "bg": "#D3E2E7",
+   "min": 3
+  },
+  {
+   "pair": "Seat 1 Blue: vote mark disc (ink) on head tint",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#D3E2E7",
+   "min": 3
+  },
+  {
+   "pair": "Seat 1 Blue: vote mark halo (page) against seat ring colour",
+   "theme": "light",
+   "fg": "#E5ECE4",
+   "bg": "#015B94",
+   "min": 3
+  },
+  {
+   "pair": "Seat 2 Ochre: name (ink) on its head tint",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#E9E7D2",
+   "min": 4.5
+  },
+  {
+   "pair": "Seat 2 Ochre: figure ring against page",
+   "theme": "light",
+   "fg": "#A27C01",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Seat 2 Ochre: ring and line pattern on its own tint",
+   "theme": "light",
+   "fg": "#A27C01",
+   "bg": "#E9E7D2",
+   "min": 3
+  },
+  {
+   "pair": "Seat 2 Ochre: vote mark disc (ink) on head tint",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#E9E7D2",
+   "min": 3
+  },
+  {
+   "pair": "Seat 2 Ochre: vote mark halo (page) against seat ring colour",
+   "theme": "light",
+   "fg": "#E5ECE4",
+   "bg": "#A27C01",
+   "min": 3
+  },
+  {
+   "pair": "Seat 3 Sepia: name (ink) on its head tint",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#DEDDD7",
+   "min": 4.5
+  },
+  {
+   "pair": "Seat 3 Sepia: figure ring against page",
+   "theme": "light",
+   "fg": "#513A26",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Seat 3 Sepia: ring and line pattern on its own tint",
+   "theme": "light",
+   "fg": "#513A26",
+   "bg": "#DEDDD7",
+   "min": 3
+  },
+  {
+   "pair": "Seat 3 Sepia: vote mark disc (ink) on head tint",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#DEDDD7",
+   "min": 3
+  },
+  {
+   "pair": "Seat 3 Sepia: vote mark halo (page) against seat ring colour",
+   "theme": "light",
+   "fg": "#E5ECE4",
+   "bg": "#513A26",
+   "min": 3
+  },
+  {
+   "pair": "Seat 4 Teal: name (ink) on its head tint",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#D8E9E5",
+   "min": 4.5
+  },
+  {
+   "pair": "Seat 4 Teal: figure ring against page",
+   "theme": "light",
+   "fg": "#238C8C",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Seat 4 Teal: ring and line pattern on its own tint",
+   "theme": "light",
+   "fg": "#238C8C",
+   "bg": "#D8E9E5",
+   "min": 3
+  },
+  {
+   "pair": "Seat 4 Teal: vote mark disc (ink) on head tint",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#D8E9E5",
+   "min": 3
+  },
+  {
+   "pair": "Seat 4 Teal: vote mark halo (page) against seat ring colour",
+   "theme": "light",
+   "fg": "#E5ECE4",
+   "bg": "#238C8C",
+   "min": 3
+  },
+  {
+   "pair": "Seat 5 Olive: name (ink) on its head tint",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#E2E4D8",
+   "min": 4.5
+  },
+  {
+   "pair": "Seat 5 Olive: figure ring against page",
+   "theme": "light",
+   "fg": "#6C6B2A",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Seat 5 Olive: ring and line pattern on its own tint",
+   "theme": "light",
+   "fg": "#6C6B2A",
+   "bg": "#E2E4D8",
+   "min": 3
+  },
+  {
+   "pair": "Seat 5 Olive: vote mark disc (ink) on head tint",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#E2E4D8",
+   "min": 3
+  },
+  {
+   "pair": "Seat 5 Olive: vote mark halo (page) against seat ring colour",
+   "theme": "light",
+   "fg": "#E5ECE4",
+   "bg": "#6C6B2A",
+   "min": 3
+  },
+  {
+   "pair": "Seat 6 Rose: name (ink) on its head tint",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#ECE2E1",
+   "min": 4.5
+  },
+  {
+   "pair": "Seat 6 Rose: figure ring against page",
+   "theme": "light",
+   "fg": "#B25C69",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Seat 6 Rose: ring and line pattern on its own tint",
+   "theme": "light",
+   "fg": "#B25C69",
+   "bg": "#ECE2E1",
+   "min": 3
+  },
+  {
+   "pair": "Seat 6 Rose: vote mark disc (ink) on head tint",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#ECE2E1",
+   "min": 3
+  },
+  {
+   "pair": "Seat 6 Rose: vote mark halo (page) against seat ring colour",
+   "theme": "light",
+   "fg": "#E5ECE4",
+   "bg": "#B25C69",
+   "min": 3
+  },
+  {
+   "pair": "Seat 7 Graphite: name (ink) on its head tint",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#DFE2DF",
+   "min": 4.5
+  },
+  {
+   "pair": "Seat 7 Graphite: figure ring against page",
+   "theme": "light",
+   "fg": "#555A60",
+   "bg": "#E5ECE4",
+   "min": 3
+  },
+  {
+   "pair": "Seat 7 Graphite: ring and line pattern on its own tint",
+   "theme": "light",
+   "fg": "#555A60",
+   "bg": "#DFE2DF",
+   "min": 3
+  },
+  {
+   "pair": "Seat 7 Graphite: vote mark disc (ink) on head tint",
+   "theme": "light",
+   "fg": "#1A2435",
+   "bg": "#DFE2DF",
+   "min": 3
+  },
+  {
+   "pair": "Seat 7 Graphite: vote mark halo (page) against seat ring colour",
+   "theme": "light",
+   "fg": "#E5ECE4",
+   "bg": "#555A60",
+   "min": 3
+  },
+  {
+   "pair": "Decorative, no minimum applies: margin line (rule) on page. Nothing depends on seeing it",
+   "theme": "light",
+   "fg": "#B5C2B7",
+   "bg": "#E5ECE4",
+   "min": 1
+  },
+  {
+   "pair": "Decorative, no minimum applies: answer sheet edge (rule) on page; sheet is told by its tone",
+   "theme": "light",
+   "fg": "#B5C2B7",
+   "bg": "#E5ECE4",
+   "min": 1
+  },
+  {
+   "pair": "Body text (ink) on page: question, table caption on stage",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#141A23",
+   "min": 4.5
+  },
+  {
+   "pair": "Body text (ink) on surface: answer sheet, bubbles, table top, pill, message box",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#1D232E",
+   "min": 4.5
+  },
+  {
+   "pair": "Text (ink) on sunk: sidebar items",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#272E3A",
+   "min": 4.5
+  },
+  {
+   "pair": "Muted text on page: margin column (You, Time limit), docket meta",
+   "theme": "dark",
+   "fg": "#9AA8A8",
+   "bg": "#141A23",
+   "min": 4.5
+  },
+  {
+   "pair": "Muted text on surface: Round label on table, placeholder, margin notes in answer sheet",
+   "theme": "dark",
+   "fg": "#9AA8A8",
+   "bg": "#1D232E",
+   "min": 4.5
+  },
+  {
+   "pair": "Muted text on sunk: sidebar note, Theme value",
+   "theme": "dark",
+   "fg": "#9AA8A8",
+   "bg": "#272E3A",
+   "min": 4.5
+  },
+  {
+   "pair": "Label on main button: Send (on-ink on ink)",
+   "theme": "dark",
+   "fg": "#141A23",
+   "bg": "#E2E8E1",
+   "min": 4.5
+  },
+  {
+   "pair": "Active switch label (mark) on mark-wash: Table",
+   "theme": "dark",
+   "fg": "#CDA4EC",
+   "bg": "#3F2C4C",
+   "min": 4.5
+  },
+  {
+   "pair": "Graphic: active switch edge (mark) on page",
+   "theme": "dark",
+   "fg": "#CDA4EC",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Agreed colour as text on page: heading Agreed 4 of 5 on docket",
+   "theme": "dark",
+   "fg": "#7BCC98",
+   "bg": "#141A23",
+   "min": 4.5
+  },
+  {
+   "pair": "Agreed colour as text on surface",
+   "theme": "dark",
+   "fg": "#7BCC98",
+   "bg": "#1D232E",
+   "min": 4.5
+  },
+  {
+   "pair": "Error colour as text on page (not drawn in study)",
+   "theme": "dark",
+   "fg": "#F28881",
+   "bg": "#141A23",
+   "min": 4.5
+  },
+  {
+   "pair": "Error colour as text on surface (not drawn in study)",
+   "theme": "dark",
+   "fg": "#F28881",
+   "bg": "#1D232E",
+   "min": 4.5
+  },
+  {
+   "pair": "Graphic: speaker mark (mark ring) on page",
+   "theme": "dark",
+   "fg": "#CDA4EC",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: focus ring (ink) on page: box round whole figure, buttons",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: focus ring (ink) on sunk: sidebar buttons",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#272E3A",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: bubble edge (outline) on its fill (surface)",
+   "theme": "dark",
+   "fg": "#78818C",
+   "bg": "#1D232E",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: bubble edge and stem line (outline) on page",
+   "theme": "dark",
+   "fg": "#78818C",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: table edge (outline) on page",
+   "theme": "dark",
+   "fg": "#78818C",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: table edge (outline) on table top (surface)",
+   "theme": "dark",
+   "fg": "#78818C",
+   "bg": "#1D232E",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: button, chip, docket and message box edge (outline) on page",
+   "theme": "dark",
+   "fg": "#78818C",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: chip edge (outline) on surface: files cited",
+   "theme": "dark",
+   "fg": "#78818C",
+   "bg": "#1D232E",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: New chat button edge (outline) on sunk",
+   "theme": "dark",
+   "fg": "#78818C",
+   "bg": "#272E3A",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: tally filled stroke and underline (ink) on surface",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#1D232E",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: tally hollow stroke (outline) on surface",
+   "theme": "dark",
+   "fg": "#78818C",
+   "bg": "#1D232E",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: tally hollow stroke (outline) on page: docket",
+   "theme": "dark",
+   "fg": "#78818C",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: ruled-off tally (agreed) on page: docket",
+   "theme": "dark",
+   "fg": "#7BCC98",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: ruled-off tally (agreed) on surface: pill",
+   "theme": "dark",
+   "fg": "#7BCC98",
+   "bg": "#1D232E",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: vote check, pale check (surface) on solid ink disc",
+   "theme": "dark",
+   "fg": "#1D232E",
+   "bg": "#E2E8E1",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: vote cross, ink outline and ink cross on pale disc (surface)",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#1D232E",
+   "min": 3
+  },
+  {
+   "pair": "Graphic: vote disc (ink) against its 2 px halo (page)",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Fading bubble at half strength (leaving the screen): text at 50% on surface. Full strength is the body text pair",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#1D232E",
+   "min": 3,
+   "alpha": 0.5
+  },
+  {
+   "pair": "Seat 1 Blue: name (ink) on its head tint",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#2C394C",
+   "min": 4.5
+  },
+  {
+   "pair": "Seat 1 Blue: figure ring against page",
+   "theme": "dark",
+   "fg": "#7CAAE9",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Seat 1 Blue: ring and line pattern on its own tint",
+   "theme": "dark",
+   "fg": "#7CAAE9",
+   "bg": "#2C394C",
+   "min": 3
+  },
+  {
+   "pair": "Seat 1 Blue: vote mark disc (ink) on head tint",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#2C394C",
+   "min": 3
+  },
+  {
+   "pair": "Seat 1 Blue: vote mark halo (page) against seat ring colour",
+   "theme": "dark",
+   "fg": "#141A23",
+   "bg": "#7CAAE9",
+   "min": 3
+  },
+  {
+   "pair": "Seat 2 Ochre: name (ink) on its head tint",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#3F3E3A",
+   "min": 4.5
+  },
+  {
+   "pair": "Seat 2 Ochre: figure ring against page",
+   "theme": "dark",
+   "fg": "#F1CA78",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Seat 2 Ochre: ring and line pattern on its own tint",
+   "theme": "dark",
+   "fg": "#F1CA78",
+   "bg": "#3F3E3A",
+   "min": 3
+  },
+  {
+   "pair": "Seat 2 Ochre: vote mark disc (ink) on head tint",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#3F3E3A",
+   "min": 3
+  },
+  {
+   "pair": "Seat 2 Ochre: vote mark halo (page) against seat ring colour",
+   "theme": "dark",
+   "fg": "#141A23",
+   "bg": "#F1CA78",
+   "min": 3
+  },
+  {
+   "pair": "Seat 3 Sepia: name (ink) on its head tint",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#323237",
+   "min": 4.5
+  },
+  {
+   "pair": "Seat 3 Sepia: figure ring against page",
+   "theme": "dark",
+   "fg": "#9F7F64",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Seat 3 Sepia: ring and line pattern on its own tint",
+   "theme": "dark",
+   "fg": "#9F7F64",
+   "bg": "#323237",
+   "min": 3
+  },
+  {
+   "pair": "Seat 3 Sepia: vote mark disc (ink) on head tint",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#323237",
+   "min": 3
+  },
+  {
+   "pair": "Seat 3 Sepia: vote mark halo (page) against seat ring colour",
+   "theme": "dark",
+   "fg": "#141A23",
+   "bg": "#9F7F64",
+   "min": 3
+  },
+  {
+   "pair": "Seat 4 Teal: name (ink) on its head tint",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#2E414B",
+   "min": 4.5
+  },
+  {
+   "pair": "Seat 4 Teal: figure ring against page",
+   "theme": "dark",
+   "fg": "#89DFE3",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Seat 4 Teal: ring and line pattern on its own tint",
+   "theme": "dark",
+   "fg": "#89DFE3",
+   "bg": "#2E414B",
+   "min": 3
+  },
+  {
+   "pair": "Seat 4 Teal: vote mark disc (ink) on head tint",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#2E414B",
+   "min": 3
+  },
+  {
+   "pair": "Seat 4 Teal: vote mark halo (page) against seat ring colour",
+   "theme": "dark",
+   "fg": "#141A23",
+   "bg": "#89DFE3",
+   "min": 3
+  },
+  {
+   "pair": "Seat 5 Olive: name (ink) on its head tint",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#343936",
+   "min": 4.5
+  },
+  {
+   "pair": "Seat 5 Olive: figure ring against page",
+   "theme": "dark",
+   "fg": "#AAAE62",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Seat 5 Olive: ring and line pattern on its own tint",
+   "theme": "dark",
+   "fg": "#AAAE62",
+   "bg": "#343936",
+   "min": 3
+  },
+  {
+   "pair": "Seat 5 Olive: vote mark disc (ink) on head tint",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#343936",
+   "min": 3
+  },
+  {
+   "pair": "Seat 5 Olive: vote mark halo (page) against seat ring colour",
+   "theme": "dark",
+   "fg": "#141A23",
+   "bg": "#AAAE62",
+   "min": 3
+  },
+  {
+   "pair": "Seat 6 Rose: name (ink) on its head tint",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#3D3944",
+   "min": 4.5
+  },
+  {
+   "pair": "Seat 6 Rose: figure ring against page",
+   "theme": "dark",
+   "fg": "#E6ABB8",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Seat 6 Rose: ring and line pattern on its own tint",
+   "theme": "dark",
+   "fg": "#E6ABB8",
+   "bg": "#3D3944",
+   "min": 3
+  },
+  {
+   "pair": "Seat 6 Rose: vote mark disc (ink) on head tint",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#3D3944",
+   "min": 3
+  },
+  {
+   "pair": "Seat 6 Rose: vote mark halo (page) against seat ring colour",
+   "theme": "dark",
+   "fg": "#141A23",
+   "bg": "#E6ABB8",
+   "min": 3
+  },
+  {
+   "pair": "Seat 7 Graphite: name (ink) on its head tint",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#303640",
+   "min": 4.5
+  },
+  {
+   "pair": "Seat 7 Graphite: figure ring against page",
+   "theme": "dark",
+   "fg": "#959AA0",
+   "bg": "#141A23",
+   "min": 3
+  },
+  {
+   "pair": "Seat 7 Graphite: ring and line pattern on its own tint",
+   "theme": "dark",
+   "fg": "#959AA0",
+   "bg": "#303640",
+   "min": 3
+  },
+  {
+   "pair": "Seat 7 Graphite: vote mark disc (ink) on head tint",
+   "theme": "dark",
+   "fg": "#E2E8E1",
+   "bg": "#303640",
+   "min": 3
+  },
+  {
+   "pair": "Seat 7 Graphite: vote mark halo (page) against seat ring colour",
+   "theme": "dark",
+   "fg": "#141A23",
+   "bg": "#959AA0",
+   "min": 3
+  },
+  {
+   "pair": "Decorative, no minimum applies: margin line (rule) on page. Nothing depends on seeing it",
+   "theme": "dark",
+   "fg": "#3A404B",
+   "bg": "#141A23",
+   "min": 1
+  },
+  {
+   "pair": "Decorative, no minimum applies: answer sheet edge (rule) on page; sheet is told by its tone",
+   "theme": "dark",
+   "fg": "#3A404B",
+   "bg": "#141A23",
+   "min": 1
+  }
+ ]
+}

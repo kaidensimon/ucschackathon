@@ -1,0 +1,180 @@
+[host]
+# The box uses driver = "llamacpp": one llama-server per model, loading the GGUF blob that
+# Ollama downloaded (see [llamacpp]). driver = "ollama" is the fallback: Ollama serves too.
+driver = "llama_router"            # llama_router | llama_process | ollama | llamacpp
+headroom_gib = 12
+core_models = ["gemma4-12b-q4", "embed-small"]
+
+[gateway]
+mock = true
+max_concurrent_models = 2          # set from probe P7
+default_timeout_s = 120
+cache = true
+
+[router]
+k = 6
+max_per_lab = 1
+floor_delta = 0.10
+wildcard_floor_delta = 0.20
+tau = 0.05
+top_n_sample = 20
+repeat_window = 5
+neighbours = 30
+weights_tier_a = { merit = 0.55, vote = 0.0, cover = 0.0, div = 0.45, load = 0.10, repeat = 0.10 }
+weights_tier_b = { merit = 0.30, vote = 0.30, cover = 0.15, div = 0.25, load = 0.10, repeat = 0.10 }
+
+[chamber]
+consensus_threshold = 0.80
+quorum_fraction = 0.60
+early_exit_min_confidence = 0.70
+blocking_objections_to_veto = 2
+max_checks_per_round = 6
+chair_external = false
+ratify_in_plan_mode = true
+ratify_min_approval = 0.60
+# Adaptive effort: rounds, deadline and reasoning are scaled to the task, like adaptive
+# thinking effort. false = use the fixed numbers of the mode below.
+adaptive = true
+chair_pick = "random"              # random | router: who breaks a failed consensus
+protocol = "structured"            # structured | open (free text for all, a card per message)
+max_extra_rounds = 2               # extra voting rounds a close vote may add
+extend_min_agreement = 0.5         # add a round only when agreement is at least this
+deadline_slack = 1.6               # deadline = estimated time x this
+min_deadline_s = 90
+max_deadline_s = 3600
+
+# k_options: the council sizes a run may ask for. The UI offers 2 to 6.
+[chamber.modes.quick]
+k = 3
+k_options = [2, 3, 4, 5, 6]
+rounds = ["r0"]
+deadline_s = 60
+reasoning = "off"
+
+[chamber.modes.standard]
+k = 6
+k_options = [2, 3, 4, 5, 6]
+rounds = ["r0", "r1", "r2", "r3"]
+deadline_s = 300
+reasoning = "council"
+
+[chamber.modes.deep]
+k = 6
+k_options = [2, 3, 4, 5, 6, 7]
+rounds = ["r0", "r1", "r2", "r3", "r3"]
+deadline_s = 1200
+reasoning = "max"
+
+[foreman]
+auto_delegate = false
+max_tasks_per_decompose_call = 12
+max_task_input_tokens = 4000
+max_task_output_tokens = 1500
+max_files_per_task = 2
+
+[workers]
+slots = 16
+max_attempts = 3
+
+[inspector]
+max_parallel_checks = 8
+check_timeout_s = 60
+allowed_executables = ["python3", "pytest"]
+network = false
+
+[review]
+max_cycles = 2
+# Reviewers argue once when the first vote is split. Still no agreement inside deadline_s:
+# one randomly picked seat casts the deciding vote from the record (or the user is asked).
+debate = true
+final_say = "random_seat"          # random_seat | user
+deadline_s = 900
+
+[chronicle]
+panel_size = 3
+recall_k = 8
+review_after_runs = 10
+decay = 0.9
+retract_below = 0.3
+
+[telemetry]
+tick_s = 1
+reference_price_per_million_tokens = 0.0   # set if we want the cloud-equivalent counter
+
+[tribunal]
+enabled = true
+questions = 3
+min_agreement = 0.80
+in_bench = false
+
+[probe]
+enabled = true
+min_auroc = 0.80
+min_labelled = 50
+# Layers the probe is trained on. [] = pick 4 from the model depth (source "llamacpp" only).
+# Layers the model does not have are dropped.
+layers = [8, 12, 16, 20]
+show_to_council = true
+# Where activations come from:
+#   "mock"         made-up vectors, proves the pipeline only
+#   "ollama_embed" the final embedding from Ollama (one pseudo-layer, not hidden states)
+#   "llamacpp"     real per-layer hidden states from the actdump tool (tap/actdump.cpp),
+#                  which loads the model's Ollama blob with llama.cpp
+source = "mock"
+# The next four are read by source = "llamacpp" only.
+actdump_path = "~/council/tap-build/actdump"
+# "" = find it: $OLLAMA_MODELS, else /usr/share/ollama/.ollama/models, else ~/.ollama/models
+ollama_models_dir = ""
+# actdump processes kept alive at once. Each holds a full copy of its model in memory.
+max_models = 1
+# "last" = hidden state of the last token, "mean" = average over all tokens
+pool = "last"
+
+[bench]
+default_split = "test"
+calibration_split = "calibration"
+self_consistency_k = 5
+solo_max_output_tokens = 1200
+solo_max_reasoning_tokens = 4000
+
+[ollama]
+base_url = "http://127.0.0.1:11434"
+keep_alive = "-1"
+num_ctx_live = 16384
+num_ctx_batch = 8192
+
+# Read by host.driver = "llamacpp" only.
+[llamacpp]
+server_bin = "~/llama.cpp/build/bin/llama-server"
+base_port = 18100                  # model n listens on base_port + n
+ctx = 8192
+parallel = 1
+health_timeout_s = 240
+ollama_models_dir = ""             # "" = find it, as in [probe]
+extra_args = []
+
+# Per-project steering vectors (llama.cpp control vectors). Needs driver = "llamacpp".
+[steer]
+enabled = true
+layers = "auto"                    # "auto" or a range such as "14-26"
+target_fraction = 0.06             # vector size as a share of the hidden-state size
+scales = [0.5, 1.0, 1.5, 2.0]      # strengths searched; each one gets a sanity check
+min_examples = 6
+max_tokens_probe = 80
+
+# Lie detector. Scores read 0 = likely false, 1 = likely true.
+[lie]
+enabled = true
+show_to_council = true
+max_claims = 8
+flag_below = 0.30
+watch_below = 0.45
+gap_flag = 0.45                    # stated confidence minus truth score
+gap_watch = 0.30
+timeout_s = 20
+
+[memory]
+reserve_gib = 10.0                 # kept free for the system
+overhead = 1.35                    # real memory / file size, for unmeasured models
+share_roles = "auto"               # auto | always | never
+measured_file = ""                 # "" = <home>/model_checks.json

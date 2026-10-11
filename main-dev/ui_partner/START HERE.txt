@@ -1,0 +1,27 @@
+GX10 Council: the UI, copied here on 2026-10-11
+
+What is in this folder
+  Start GX10 Council.sh          starts the app
+  release/GX10 Council-linux-arm64/   the ready-to-run app for this machine (Linux, ARM)
+  ui/                            the app's source code (screens, Electron shell, tests)
+  docs/                          the plan, design notes, status and review screenshots
+  CLAUDE.md                      short notes on how the project is laid out
+
+To see it on the monitor
+  Open a terminal on this machine (not over SSH: it needs the screen) and run:
+      cd ~/Desktop/UI
+      ./"Start GX10 Council.sh" --no-sandbox
+  A window titled "GX10 Council" opens. "Sample debate" in the sidebar shows the council.
+
+  Why --no-sandbox: this Ubuntu blocks the app's built-in sandbox unless one file is
+  owned by root (checked on 2026-10-11: it is not). For this build that is fine: it
+  shows only its own screens and never uses the network. To run it without the flag,
+  do this once (it asks for the password), then start it as  ./"Start GX10 Council.sh"
+      cd ~/Desktop/UI/release/"GX10 Council-linux-arm64"
+      sudo chown root:root chrome-sandbox && sudo chmod 4755 chrome-sandbox
+
+This is the screens only. The chat answers with a stand-in reply, nothing is saved
+when the app closes, and it never uses the network.
+
+Not copied: the build tools' downloads (node_modules) and the Mac version of the app.
+To change the code here you would need Node.js, then run  npm ci  inside ui/.

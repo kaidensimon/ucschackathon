@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>Look B: Fair Copy</title>
+<style data-fonts="@fontsource-variable/literata/opsz.css @fontsource-variable/literata/opsz-italic.css @fontsource-variable/archivo/wdth.css"></style>
+<style>
+/* ---------- tokens ---------- */
+:root {
+  color-scheme: light;
+  --page: #E5ECE4;
+  --surface: #F5F8F4;
+  --sunk: #DBE2D9;
+  --rule: #B5C2B7;
+  --outline: #717E76;
+  --ink: #1A2435;
+  --muted: #515963;
+  --mark: #67298C;
+  --mark-wash: #ECDFF7;
+  --on-ink: #F5F8F4;
+  --agreed: #136239;
+  --error: #A12628;
+  --seat-1: #015B94; --seat-1-tint: #D3E2E7;
+  --seat-2: #A27C01; --seat-2-tint: #E9E7D2;
+  --seat-3: #513A26; --seat-3-tint: #DEDDD7;
+  --seat-4: #238C8C; --seat-4-tint: #D8E9E5;
+  --seat-5: #6C6B2A; --seat-5-tint: #E2E4D8;
+  --seat-6: #B25C69; --seat-6-tint: #ECE2E1;
+  --seat-7: #555A60; --seat-7-tint: #DFE2DF;
+  --record: 'Literata Variable';
+  --form: 'Archivo Variable';
+}
+[data-theme=dark] {
+  color-scheme: dark;
+  --page: #141A23;
+  --surface: #1D232E;
+  --sunk: #272E3A;
+  --rule: #3A404B;
+  --outline: #78818C;
+  --ink: #E2E8E1;
+  --muted: #9AA8A8;
+  --mark: #CDA4EC;
+  --mark-wash: #3F2C4C;
+  --on-ink: #141A23;
+  --agreed: #7BCC98;
+  --error: #F28881;
+  --seat-1: #7CAAE9; --seat-1-tint: #2C394C;
+  --seat-2: #F1CA78; --seat-2-tint: #3F3E3A;
+  --seat-3: #9F7F64; --seat-3-tint: #323237;
+  --seat-4: #89DFE3; --seat-4-tint: #2E414B;
+  --seat-5: #AAAE62; --seat-5-tint: #343936;
+  --seat-6: #E6ABB8; --seat-6-tint: #3D3944;
+  --seat-7: #959AA0; --seat-7-tint: #303640;
+}
+
+/* ---------- base ---------- */
+* { box-sizing: border-box; }
+html { background: var(--surface); }
+body {
+  margin: 0;
+  width: 1440px;
+  background: var(--surface);
+  color: var(--ink);
+  font: 500 14px/20px var(--form);
+  font-variant-numeric: tabular-nums;
+}
+h1, h2, p, ul, figure { margin: 0; padding: 0; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* ---------- study chrome (not the app) ---------- */
+.study-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 28px 24px 0;
+}
+.study-head h1 { font: 550 26px/32px var(--record); letter-spacing: -0.01em; }
+.study-head p { font: 400 17px/28px var(--record); margin-top: 2px; }
+.cap {
+  height: 48px; padding: 0 24px 10px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+}
+.cap h2 { font: 500 14px/20px var(--form); }
+.panel:last-of-type { padding-bottom: 48px; }
+.strip {
+  background: var(--page); outline: 1px solid var(--rule);
+  height: 168px; display: flex; align-items: center; justify-content: center; gap: 96px;
+}
+.strip figure { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.strip figcaption { font: 450 12px/16px var(--form); color: var(--muted); }
+
+/* ---------- controls ---------- */
+.btn {
+  display: inline-flex; align-items: center; height: 32px; padding: 0 12px;
+  background: transparent; border: 1px solid var(--outline); border-radius: 8px;
+  font: 500 14px/20px var(--form); color: var(--ink);
+}
+.btn-main {
+  display: inline-flex; align-items: center; height: 32px; padding: 0 14px;
+  background: var(--ink); color: var(--on-ink); border: 0; border-radius: 8px;
+  font: 500 14px/20px var(--form);
+}
+.switch { display: inline-flex; height: 32px; border: 1px solid var(--outline); border-radius: 8px; }
+.seg {
+  display: inline-flex; align-items: center; padding: 0 14px; margin: -1px;
+  background: transparent; border: 1.5px solid transparent; border-radius: 8px;
+  font: 500 14px/20px var(--form); color: var(--ink);
+}
+.seg.is-on { background: var(--mark-wash); border-color: var(--mark); color: var(--mark); font-weight: 600; }
+
+/* ---------- app window ---------- */
+.win {
+  position: relative; width: 1440px; height: 830px; overflow: hidden;
+  background: var(--page); outline: 1px solid var(--rule);
+}
+.topbar {
+  position: absolute; left: 0; top: 0; right: 0; height: 48px;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 24px 0 29px;
+}
+.council { font: 600 14px/20px var(--form); }
+.pill {
+  display: inline-flex; align-items: center; gap: 10px; height: 28px; padding: 0 14px 0 12px;
+  background: var(--surface); border: 1px solid var(--outline); border-radius: 999px;
+  font: 500 13px/16px var(--form);
+}
+.pill svg { display: block; }
+
+.side {
+  position: absolute; left: 0; top: 48px; bottom: 0; width: 240px;
+  background: var(--sunk); padding: 16px; display: flex; flex-direction: column;
+}
+.side .btn { width: 100%; height: 36px; }
+.nav { list-style: none; margin-top: 8px; }
+.row {
+  display: flex; align-items: center; justify-content: space-between; width: 100%; height: 36px;
+  padding: 0 13px; background: transparent; border: 0; border-radius: 8px; text-align: left;
+  font: 500 14px/20px var(--form); color: var(--ink);
+}
+.row-val { color: var(--muted); font-weight: 450; }
+.side-foot { margin-top: auto; }
+.side-note { font: 450 12px/16px var(--form); color: var(--muted); padding: 10px 13px 4px; }
+
+.conv { position: absolute; left: 240px; top: 48px; right: 0; bottom: 0; }
+.margin-line { position: absolute; left: 192px; top: 12px; width: 1px; background: var(--rule); }
+.entry { display: grid; grid-template-columns: 136px 590px; column-gap: 24px; }
+.q { position: absolute; left: 56px; top: 16px; }
+.mcol {
+  text-align: right; padding: 7px 12px 0 0;
+  font: 450 12px/16px var(--form); color: var(--muted);
+}
+.mcol span { display: block; }
+.said { font: 400 17px/28px var(--record); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.chip {
+  display: inline-flex; align-items: center; height: 26px; padding: 0 9px;
+  border: 1px solid var(--outline); border-radius: 4px;
+  font: 500 13px/16px var(--form); color: var(--ink);
+}
+
+/* stage */
+.stage { position: absolute; left: 56px; top: 88px; width: 1040px; height: 558px; }
+.stage-svg { position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none; overflow: visible; }
+.slips { position: absolute; inset: 0; z-index: 1; }
+.table { fill: var(--surface); stroke: var(--outline); stroke-width: 1.5; stroke-linejoin: round; }
+.t-round { font: 450 12px var(--form); fill: var(--muted); text-anchor: middle; }
+.t-time { font: 500 20px var(--form); fill: var(--ink); text-anchor: middle; font-variant-numeric: tabular-nums; }
+.t-cap { font: 500 14px var(--form); fill: var(--ink); text-anchor: middle; font-variant-numeric: tabular-nums; }
+
+/* tally: the one bold element */
+.tk { fill: none; stroke: var(--outline); }
+.tk.is-filled { fill: var(--ink); stroke: none; }
+.tally-line { stroke: var(--ink); stroke-linecap: butt; }
+.tally.is-agreed .tk.is-filled { fill: var(--agreed); }
+.tally.is-agreed .tally-line { stroke: var(--agreed); }
+
+/* figures */
+.fig { pointer-events: auto; cursor: pointer; }
+.fig:focus-visible { outline: none; }
+.focus-box { fill: none; stroke: var(--ink); stroke-width: 2; opacity: 0; }
+.fig:focus-visible .focus-box, .fig.is-focused .focus-box { opacity: 1; }
+.body-fill { fill: var(--tint); }
+.body-ring { fill: none; stroke: var(--seat); stroke-width: 3; stroke-linejoin: round; }
+.no-hatch .body-hatch { display: none; }
+.head { fill: var(--tint); stroke: var(--seat); stroke-width: 3; }
+.spk-gap { fill: var(--page); }
+.spk-ring { fill: none; stroke: var(--mark); stroke-width: 3; }
+.name { font: 600 14px var(--form); fill: var(--ink); text-anchor: middle; }
+.seven .name { font-size: 13px; }
+.vm-halo { fill: var(--page); }
+.vm-check-disc { fill: var(--ink); }
+.vm-check { fill: none; stroke: var(--surface); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.vm-cross-disc { fill: var(--surface); stroke: var(--ink); stroke-width: 1.5; }
+.vm-cross { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
+
+/* bubbles (note slips) */
+.slip {
+  position: absolute; left: 0; top: 0; width: max-content;
+  padding: 8px 10px; background: var(--surface);
+  border: 1px solid var(--outline); border-radius: 3px;
+  font: italic 450 14px/20px var(--record); color: var(--ink);
+  opacity: var(--strength, 1);
+}
+.slip.is-upright { font-style: normal; }
+.slip.is-static { position: relative; }
+.slip-text {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+  overflow: hidden; text-wrap: balance; padding: 0 2px; margin: 0 -2px;
+}
+.stem { position: absolute; top: 100%; width: 1px; background: var(--outline); }
+.slip.is-play { opacity: 0; }
+.slip.is-play.is-playing { animation: slip-life 9750ms linear both; }
+@keyframes slip-life {
+  0% { opacity: 0; animation-timing-function: ease-out; }
+  2.564% { opacity: 1; }
+  84.615% { opacity: 1; animation-timing-function: ease-in; }
+  100% { opacity: 0; }
+}
+@keyframes slip-life-still { 0% { opacity: 1; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .slip.is-play.is-playing { animation: slip-life-still 8000ms step-end both; }
+}
+
+/* under the stage */
+.stage-foot {
+  position: absolute; left: 56px; top: 654px; width: 1040px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.stage-foot .left { display: flex; gap: 8px; }
+.msgbox {
+  position: absolute; left: 56px; top: 700px; width: 750px; height: 48px;
+  display: flex; align-items: center; padding: 0 8px 0 16px;
+  background: var(--surface); border: 1px solid var(--outline); border-radius: 8px;
+}
+.msgbox input {
+  flex: 1; min-width: 0; height: 46px; background: transparent; border: 0;
+  font: 400 17px/28px var(--record); color: var(--ink);
+}
+.msgbox input::placeholder { color: var(--muted); opacity: 1; }
+.msgbox input:focus-visible { outline: none; }
+.msgbox:focus-within { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* released answer */
+.record { position: absolute; left: 32px; top: 100px; width: 806px; display: flex; flex-direction: column; gap: 12px; }
+.docket {
+  display: grid; grid-template-columns: 136px 1fr auto; column-gap: 24px; align-items: center;
+  padding: 14px 15px 14px 23px; background: var(--page);
+  border: 1px solid var(--outline); border-radius: 3px;
+}
+.docket .mcol { padding-top: 0; display: flex; justify-content: flex-end; }
+.docket h2 { font: 600 22px/28px var(--record); color: var(--agreed); }
+.docket-meta { display: flex; align-items: center; gap: 18px; margin-top: 6px; }
+.docket-meta .when { font: 450 12px/16px var(--form); color: var(--muted); }
+.marks { display: flex; gap: 14px; }
+.vm { display: inline-flex; align-items: center; gap: 5px; font: 500 12px/16px var(--form); color: var(--ink); }
+.vm svg { display: block; }
+.sheet {
+  padding: 22px 31px 26px 23px; background: var(--surface);
+  border: 1px solid var(--rule); border-radius: 3px;
+}
+.sheet .said + .said { margin-top: 12px; }
+.sheet .entry + .entry { margin-top: 20px; }
+.sheet .files .mcol { padding-top: 5px; }
+.sheet .chips { margin-top: 0; }
+.dissent { font: italic 450 15px/24px var(--record); }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="hatch-2" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M2.75 0V6" style="stroke:var(--seat-2);stroke-width:1.5"/></pattern>
+    <pattern id="hatch-3" width="6" height="12" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="3" r="1.25" style="fill:var(--seat-3)"/><circle cx="4.5" cy="9" r="1.25" style="fill:var(--seat-3)"/></pattern>
+    <pattern id="hatch-4" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M3 0V6" style="stroke:var(--seat-4);stroke-width:1.5"/></pattern>
+    <pattern id="hatch-5" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0 2.75H6" style="stroke:var(--seat-5);stroke-width:1.5"/></pattern>
+    <pattern id="hatch-6" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path d="M3 0V6" style="stroke:var(--seat-6);stroke-width:1.5"/></pattern>
+    <pattern id="hatch-7" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M2.75 0V6M0 2.75H6" style="stroke:var(--seat-7);stroke-width:1.5"/></pattern>
+  </defs>
+</svg>
+
+<header class="study-head">
+  <div>
+    <h1>Look B: Fair Copy</h1>
+    <p>The debate is written down like minutes. The agreed answer is the clean final copy.</p>
+  </div>
+  <button class="btn js-theme" id="theme-switch" type="button">Dark theme</button>
+</header>
+
+<main id="study"></main>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- shared content (docs/direction/study-content.json) ---------- */
+  var LAYOUTS = {
+    five: {
+      key: "five", headDiameter: 72, tableRadius: 204, bubbleMaxWidth: 280,
+      seats: [
+        { seat: 1, name: "Phi", x: 269.9, bodyBottomY: 438.7 },
+        { seat: 2, name: "Llama", x: 365.4, bodyBottomY: 307.2 },
+        { seat: 3, name: "Qwen", x: 520.0, bodyBottomY: 257.0 },
+        { seat: 4, name: "Gemma", x: 674.6, bodyBottomY: 307.2 },
+        { seat: 5, name: "Mistral", x: 770.1, bodyBottomY: 438.7 }
+      ]
+    },
+    seven: {
+      key: "seven", headDiameter: 64, tableRadius: 224, bubbleMaxWidth: 240,
+      seats: [
+        { seat: 1, name: "Phi", x: 249.9, bodyBottomY: 458.4 },
+        { seat: 2, name: "Llama", x: 303.4, bodyBottomY: 347.3 },
+        { seat: 3, name: "Granite", x: 399.8, bodyBottomY: 270.4 },
+        { seat: 4, name: "Qwen", x: 520.0, bodyBottomY: 243.0 },
+        { seat: 5, name: "Gemma", x: 640.2, bodyBottomY: 270.4 },
+        { seat: 6, name: "Hermes", x: 736.6, bodyBottomY: 347.3 },
+        { seat: 7, name: "Mistral", x: 790.1, bodyBottomY: 458.4 }
+      ]
+    }
+  };
+  var STAGE = { width: 1040, height: 558, cx: 520, flatY: 520, gapAboveHead: 12 };
+  var QUESTION = {
+    text: "Can I end my apartment lease early, and what would it cost me?",
+    files: ["Lease 2025.pdf, 14 pages", "Renewal letter 2026.pdf, 2 pages", "House rules.docx, 6 pages"],
+    limit: "5:00"
+  };
+  var P1 = {
+    layout: "five", council: "Council of 5", pill: "Round 2, 3:10 left, 2 of 5 agree",
+    round: "Round 2", timeLeft: "3:10 left", meter: { agree: 2, seats: 5, needed: 4 },
+    caption: "2 of 5 agree, needs 4", speaking: ["Qwen"], voteMarks: null,
+    bubbles: [
+      { seat: "Qwen", text: "Tells Mistral the fee is one month at the new rent.", strength: 1 },
+      { seat: "Gemma", text: "Cites the renewal letter, page 1: fee is one month.", strength: 1 },
+      { seat: "Llama", text: "Holds that a letter cannot change the lease.", strength: 0.5 }
+    ],
+    placeholder: "Add a note for the next round"
+  };
+  var P2 = {
+    layout: "five", council: "Council of 5", pill: "Round 2, 3:10 left, 2 of 5 agree",
+    round: "Round 2", timeLeft: "3:10 left", meter: { agree: 2, seats: 5, needed: 4 },
+    caption: "2 of 5 agree, needs 4", speaking: ["Phi", "Llama", "Qwen", "Gemma", "Mistral"], voteMarks: null,
+    bubbles: [
+      { seat: "Phi", text: "Says the landlord never signed the letter.", strength: 1 },
+      { seat: "Llama", text: "Holds that a letter cannot change the lease.", strength: 1 },
+      { seat: "Qwen", text: "Tells Mistral the fee is one month at the new rent.", strength: 1 },
+      { seat: "Gemma", text: "Cites the renewal letter, page 1: fee is one month.", strength: 1 },
+      { seat: "Mistral", text: "Now agrees: one month, not two.", strength: 1 }
+    ],
+    placeholder: "Add a note for the next round"
+  };
+  var P3 = {
+    layout: "seven", council: "Council of 7", pill: "Round 1 vote, 4 of 7 agree",
+    round: "Round 1 vote", timeLeft: "3:36 left", meter: { agree: 4, seats: 7, needed: 6 },
+    caption: "4 of 7 agree, needs 6", speaking: [],
+    voteMarks: { Phi: "cross", Llama: "cross", Granite: "check", Qwen: "check", Gemma: "check", Hermes: "cross", Mistral: "check" },
+    bubbles: [{ seat: "Hermes", text: "Asks which rent the fee is based on.", strength: 0.5 }],
+    placeholder: "Add a note for the next round"
+  };
+  var P4 = {
+    layout: null, council: "Council of 5", pill: "Agreed, 4 of 5",
+    meter: { agree: 4, seats: 5, needed: 4, agreed: true },
+    folded: {
+      heading: "Agreed 4 of 5", meta: "3 rounds, 3:40", button: "See the debate",
+      marks: [["Phi", "cross"], ["Llama", "check"], ["Qwen", "check"], ["Gemma", "check"], ["Mistral", "check"]]
+    },
+    answer: {
+      paragraphs: [
+        "Yes. You can end the lease early by giving 60 days’ written notice and paying one month’s rent at the new rate, $2,520.",
+        "To be out by the end of February, send the notice by 30 December 2026. An email counts as written notice."
+      ],
+      filesCitedLabel: "Files cited",
+      citations: ["Renewal letter 2026.pdf, p. 1", "Lease 2025.pdf, p. 9", "House rules.docx, p. 4"],
+      dissent: "Phi disagreed: the renewal letter has one signature (page 2), so the old terms may still apply."
+    },
+    placeholder: "Message the council"
+  };
+
+  function n(v) { return Math.round(v * 100) / 100; }
+
+  /* ---------- the tally ---------- */
+  // One slanted stroke per seat. Filled = agrees. Hollow = not yet.
+  // One line under the number needed. Agreed = green, second line ruled under.
+  function tallyMarks(o) {
+    var dx = o.h * Math.tan(10 * Math.PI / 180);
+    var total = (o.n - 1) * o.pitch + o.w + dx;
+    var x0 = o.align === "center" ? o.x - total / 2 : o.align === "right" ? o.x - total : o.x;
+    var s = '<g class="tally' + (o.agreed ? " is-agreed" : "") + '">';
+    for (var i = 0; i < o.n; i++) {
+      var xb = x0 + i * o.pitch, yt = o.y, yb = o.y + o.h, filled = i < o.agree, k = filled ? 0 : o.sw / 2;
+      var pts = [
+        [xb + k, yb - k], [xb + o.w - k, yb - k], [xb + o.w + dx - k, yt + k], [xb + dx + k, yt + k]
+      ].map(function (p) { return n(p[0]) + "," + n(p[1]); }).join(" ");
+      s += '<polygon class="tk' + (filled ? " is-filled" : "") + '" points="' + pts + '"' +
+        (filled ? "" : ' stroke-width="' + o.sw + '"') + "/>";
+    }
+    var lx1 = x0 - o.pad, lx2 = x0 + (o.need - 1) * o.pitch + o.w + o.pad, ly = o.y + o.h + o.gap;
+    s += '<line class="tally-line" x1="' + n(lx1) + '" x2="' + n(lx2) + '" y1="' + n(ly) + '" y2="' + n(ly) + '" stroke-width="' + o.lw + '"/>';
+    if (o.agreed) {
+      s += '<line class="tally-line" x1="' + n(lx1) + '" x2="' + n(lx2) + '" y1="' + n(ly + o.rule2) + '" y2="' + n(ly + o.rule2) + '" stroke-width="' + o.lw + '"/>';
+    }
+    return { svg: s + "</g>", width: total + 2 * o.pad, height: o.h + o.gap + o.lw / 2 + (o.agreed ? o.rule2 : 0) };
+  }
+  function tallySvg(o, label) {
+    o.x = o.pad; o.y = 0; o.align = "left";
+    var t = tallyMarks(o), w = Math.ceil(t.width), h = Math.ceil(t.height);
+    return '<svg width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + " " + h + '" role="img" aria-label="' + label + '">' + t.svg + "</svg>";
+  }
+
+  /* ---------- vote marks ---------- */
+  // Check = solid ink disc, pale check. Cross = pale disc, ink outline, ink cross. Never red.
+  function voteMark(cx, cy, kind, r, halo) {
+    var s = "";
+    if (halo) s += '<circle class="vm-halo" cx="' + n(cx) + '" cy="' + n(cy) + '" r="' + (r + halo) + '"/>';
+    var u = r / 11;
+    if (kind === "check") {
+      s += '<circle class="vm-check-disc" cx="' + n(cx) + '" cy="' + n(cy) + '" r="' + r + '"/>';
+      s += '<polyline class="vm-check" points="' + n(cx - 4.6 * u) + "," + n(cy + 0.4 * u) + " " + n(cx - 1.4 * u) + "," + n(cy + 3.6 * u) + " " + n(cx + 4.8 * u) + "," + n(cy - 3.4 * u) + '"/>';
+    } else {
+      s += '<circle class="vm-cross-disc" cx="' + n(cx) + '" cy="' + n(cy) + '" r="' + (r - 0.75) + '"/>';
+      var d = 3.6 * u;
+      s += '<path class="vm-cross" d="M' + n(cx - d) + " " + n(cy - d) + "L" + n(cx + d) + " " + n(cy + d) + "M" + n(cx + d) + " " + n(cy - d) + "L" + n(cx - d) + " " + n(cy + d) + '"/>';
+    }
+    return s;
+  }
+  function voteChip(name, kind) {
+    var words = kind === "check" ? "agreed" : "disagreed";
+    return '<span class="vm"><svg width="18" height="18" viewBox="0 0 18 18" role="img" aria-label="' + words + '">' +
+      voteMark(9, 9, kind, 9, 0) + "</svg>" + name + "</span>";
+  }
+
+  /* ---------- figures ---------- */
+  function geom(L, s) {
+    var D = L.headDiameter, r = D / 2, br = 0.7 * D;
+    return { D: D, r: r, br: br, x: s.x, yb: s.bodyBottomY, hy: s.bodyBottomY - br - 2 - r };
+  }
+  function figure(L, s, P, o) {
+    var g = geom(L, s), speaking = P.speaking.indexOf(s.name) >= 0;
+    var vote = P.voteMarks ? P.voteMarks[s.name] : null, focused = o.focus === s.name;
+    var label = s.name + ", seat " + s.seat + (speaking ? ", speaking" : "") +
+      (vote ? (vote === "check" ? ", backs the leading answer" : ", backs another answer") : "");
+    var top = g.hy - g.r - (speaking ? 7 : 0) - (vote ? 4 : 0);
+    var h = '<g class="fig' + (focused ? " is-focused" : "") + '" style="--seat:var(--seat-' + s.seat + ");--tint:var(--seat-" + s.seat + '-tint)" tabindex="0" role="button" aria-label="' + label + '">';
+    h += '<rect class="focus-box" x="' + n(g.x - g.br - 6) + '" y="' + n(top - 6) + '" width="' + n(2 * g.br + 12) + '" height="' + n(g.yb - top + 12) + '" rx="10"/>';
+    var bp = "M " + n(g.x - g.br + 1.5) + " " + n(g.yb - 1.5) + " A " + n(g.br - 1.5) + " " + n(g.br - 1.5) + " 0 0 1 " + n(g.x + g.br - 1.5) + " " + n(g.yb - 1.5) + " Z";
+    h += '<path class="body-fill" d="' + bp + '"/>';
+    if (s.seat > 1) h += '<path class="body-hatch" d="' + bp + '" fill="url(#hatch-' + s.seat + ')"/>';
+    h += '<path class="body-ring" d="' + bp + '"/>';
+    if (speaking) {
+      h += '<circle class="spk-gap" cx="' + n(g.x) + '" cy="' + n(g.hy) + '" r="' + n(g.r + 9) + '"/>';
+      h += '<circle class="spk-ring" cx="' + n(g.x) + '" cy="' + n(g.hy) + '" r="' + n(g.r + 5.5) + '"/>';
+    }
+    h += '<circle class="head" cx="' + n(g.x) + '" cy="' + n(g.hy) + '" r="' + n(g.r - 1.5) + '"/>';
+    var fs = L.key === "five" ? 14 : 13;
+    h += '<text class="name" data-max="' + (g.D - 16) + '" x="' + n(g.x) + '" y="' + n(g.hy + fs * 0.35) + '">' + s.name + "</text>";
+    if (vote) h += voteMark(g.x + g.r * 0.7071, g.hy - g.r * 0.7071, vote, 11, 2);
+    return h + "</g>";
+  }
+
+  function stage(P, o) {
+    var L = LAYOUTS[P.layout], R = L.tableRadius, cx = STAGE.cx, fy = STAGE.flatY - 0.75;
+    var s = '<div id="stage-' + o.id + '" class="stage ' + L.key + (o.hatch === false ? " no-hatch" : "") + '" data-layout="' + L.key + '" data-panel="' + o.id + '">';
+    s += '<div class="slips">';
+    P.bubbles.concat(o.play ? [o.play] : []).forEach(function (b) {
+      s += '<div class="slip' + (b.play ? " is-play" : "") + '" data-seat="' + b.seat + '" style="--strength:' + b.strength + '"><span class="slip-text">' + b.text + '</span><i class="stem"></i></div>';
+    });
+    s += "</div>";
+    s += '<svg class="stage-svg" width="' + STAGE.width + '" height="' + STAGE.height + '" viewBox="0 0 ' + STAGE.width + " " + STAGE.height + '" role="group" aria-label="The council at its table">';
+    s += '<path class="table" d="M ' + (cx - R) + " " + fy + " A " + R + " " + R + " 0 0 1 " + (cx + R) + " " + fy + ' Z"/>';
+    s += '<text class="t-round" x="' + cx + '" y="372">' + P.round + "</text>";
+    s += '<text class="t-time" x="' + cx + '" y="400">' + P.timeLeft + "</text>";
+    s += tallyMarks({ x: cx, y: 416, align: "center", n: P.meter.seats, agree: P.meter.agree, need: P.meter.needed, h: 40, w: 6, pitch: 14, sw: 1.5, pad: 4, gap: 6, lw: 2, rule2: 4 }).svg;
+    s += '<text class="t-cap" x="' + cx + '" y="492">' + P.caption + "</text>";
+    L.seats.forEach(function (seat) { s += figure(L, seat, P, o); });
+    return s + "</svg></div>";
+  }
+
+  /* ---------- frame ---------- */
+  function pill(P) {
+    var m = P.meter;
+    return '<div class="pill">' + tallySvg({ n: m.seats, agree: m.agree, need: m.needed, agreed: !!m.agreed, h: 14, w: 4, pitch: 7, sw: 1, pad: 2, gap: 3, lw: 1.5, rule2: 3 }, m.agree + " of " + m.seats + " agree") + "<span>" + P.pill + "</span></div>";
+  }
+  function sidebar() {
+    return '<nav class="side" aria-label="Main">' +
+      '<button class="btn" type="button">New chat</button>' +
+      '<ul class="nav"><li><button class="row" type="button">History</button></li><li><button class="row" type="button">Library</button></li><li><button class="row" type="button">Models</button></li><li><button class="row" type="button">Settings</button></li></ul>' +
+      '<div class="side-foot"><button class="row js-theme" type="button"><span>Theme</span><span class="row-val js-theme-name">Light</span></button>' +
+      '<button class="row" type="button">Shortcuts</button>' +
+      '<p class="side-note">Sample data. Invented files and answers.</p></div></nav>';
+  }
+  function question() {
+    return '<div class="entry q"><div class="mcol"><span>You</span><span>Time limit ' + QUESTION.limit + '</span></div><div class="tcol"><p class="said">' + QUESTION.text + '</p><div class="chips">' +
+      QUESTION.files.map(function (f) { return '<span class="chip">' + f + "</span>"; }).join("") + "</div></div></div>";
+  }
+  function msgbox(P) {
+    return '<div class="msgbox"><input type="text" aria-label="' + P.placeholder + '" placeholder="' + P.placeholder + '"><button class="btn-main" type="button">Send</button></div>';
+  }
+  function debate(P, o) {
+    return '<div class="margin-line" style="height:70px"></div>' + question() + stage(P, o) +
+      '<div class="stage-foot"><div class="left"><button class="btn" type="button">Pause</button><button class="btn" type="button">Stop</button></div>' +
+      '<div class="switch" role="group" aria-label="View"><button class="seg is-on" type="button" aria-pressed="true">Table</button><button class="seg" type="button" aria-pressed="false" title="Not in this mock yet.">Chat</button></div></div>' +
+      msgbox(P);
+  }
+  function released(P) {
+    var f = P.folded, a = P.answer, m = P.meter;
+    return '<div class="margin-line" style="height:76px"></div>' + question() +
+      '<div class="record">' +
+      '<div class="docket"><div class="mcol">' + tallySvg({ n: m.seats, agree: m.agree, need: m.needed, agreed: true, h: 30, w: 5, pitch: 11, sw: 1.5, pad: 3, gap: 5, lw: 2, rule2: 4 }, "Tally: 4 of 5 agree") + "</div>" +
+      "<div><h2>" + f.heading + '</h2><div class="docket-meta"><span class="when">' + f.meta + '</span><span class="marks">' +
+      f.marks.map(function (k) { return voteChip(k[0], k[1]); }).join("") + "</span></div></div>" +
+      '<button class="btn" type="button">' + f.button + "</button></div>" +
+      '<div class="sheet"><div class="entry"><div class="mcol"><span>Council</span></div><div class="tcol">' +
+      a.paragraphs.map(function (p) { return '<p class="said">' + p + "</p>"; }).join("") + "</div></div>" +
+      '<div class="entry files"><div class="mcol"><span>' + a.filesCitedLabel + '</span></div><div class="tcol"><div class="chips">' +
+      a.citations.map(function (c) { return '<span class="chip">' + c + "</span>"; }).join("") + "</div></div></div>" +
+      '<div class="entry"><div class="mcol"></div><div class="tcol"><p class="dissent">' + a.dissent + "</p></div></div></div>" +
+      "</div>" + msgbox(P);
+  }
+  function panel(P, o) {
+    return '<section class="panel" id="' + o.id + '"><div class="cap"><h2>' + o.caption + "</h2>" +
+      (o.play ? '<button class="btn" id="play-p1" type="button">Play one bubble</button>' : "") + "</div>" +
+      '<div class="win"><div class="topbar"><span class="council">' + P.council + "</span>" + pill(P) + "</div>" + sidebar() +
+      '<div class="conv">' + (P.layout ? debate(P, o) : released(P)) + "</div></div></section>";
+  }
+  function compareStrip() {
+    var text = "Tells Mistral the fee is one month at the new rent.";
+    return '<section class="panel" id="bubble-compare"><div class="cap"><h2>Bubble text set two ways. Compare them in the dark theme.</h2></div>' +
+      '<div class="strip"><figure><div class="slip is-static" data-max="280"><span class="slip-text">' + text + '</span></div><figcaption>Slanted (as designed)</figcaption></figure>' +
+      '<figure><div class="slip is-static is-upright" data-max="280"><span class="slip-text">' + text + "</span></div><figcaption>Upright</figcaption></figure></div></section>";
+  }
+
+  var root = document.getElementById("study");
+  root.innerHTML =
+    panel(P1, { id: "p1-one-speaker", caption: "Mid-debate, one speaker. Line patterns on (as designed).", play: { seat: "Mistral", text: "Now agrees: one month, not two.", strength: 1, play: true } }) +
+    panel(P1, { id: "p1-one-speaker-plain", caption: "The same moment with line patterns off.", hatch: false }) +
+    compareStrip() +
+    panel(P2, { id: "p2-all-speaking", caption: "All five speaking at once (stress case; shown because the engine has not decided)" }) +
+    panel(P3, { id: "p3-seven-after-vote", caption: "Seven seats, just after the round 1 vote. Keyboard focus is on Granite.", focus: "Granite" }) +
+    panel(P4, { id: "p4-released", caption: "The released answer in chat" });
+
+  /* ---------- layout pass (after fonts) ---------- */
+  function fitSlip(el, maxW) {
+    el.style.width = ""; el.style.maxWidth = maxW + "px";
+    var range = document.createRange();
+    range.selectNodeContents(el.querySelector(".slip-text"));
+    var lines = {}, w = 0;
+    Array.prototype.forEach.call(range.getClientRects(), function (r) {
+      var k = Math.round(r.top), c = lines[k] || { l: Infinity, r: -Infinity };
+      c.l = Math.min(c.l, r.left); c.r = Math.max(c.r, r.right); lines[k] = c;
+    });
+    Object.keys(lines).forEach(function (k) { w = Math.max(w, lines[k].r - lines[k].l); });
+    if (w > 0) el.style.width = Math.min(maxW, Math.ceil(w) + 23) + "px";
+  }
+  function fitNames() {
+    Array.prototype.forEach.call(document.querySelectorAll(".name"), function (t) {
+      var max = +t.getAttribute("data-max"), steps = [100, 88, 75];
+      for (var i = 0; i < steps.length; i++) {
+        t.style.fontStretch = steps[i] + "%";
+        if (t.getComputedTextLength() <= max) break;
+      }
+    });
+  }
+  // Gaps the layout pass keeps. A slip sits 12 px above the top of its own head,
+  // counted from the speaker ring or vote mark when one is drawn there.
+  var GAP_SLIP = 8;     // slip to slip
+  var GAP_FIG = 24;     // slip to any other seat's figure, at least
+  var MIN_CLEAR = 4;    // checked after placing, against the drawn shapes
+  function gapTo(rc, x, y) { return Math.hypot(Math.max(rc.l - x, 0, x - rc.r), Math.max(rc.t - y, 0, y - rc.b)); }
+  function layoutStage(el, notes) {
+    var id = el.getAttribute("data-panel"), L = LAYOUTS[el.getAttribute("data-layout")];
+    var P = { "p1-one-speaker": P1, "p1-one-speaker-plain": P1, "p2-all-speaking": P2, "p3-seven-after-vote": P3 }[id];
+    var figs = {};
+    L.seats.forEach(function (s) {
+      var g = geom(L, s), e = P.speaking.indexOf(s.name) >= 0 ? 7 : 0, vote = !!(P.voteMarks && P.voteMarks[s.name]), v = vote ? 4 : 0;
+      // drawn shapes: head (with speaker ring), vote disc (with halo), body outline
+      var marks = [{ x: g.x, y: g.hy, rad: g.r + e }];
+      if (vote) marks.push({ x: g.x + g.r * 0.7071, y: g.hy - g.r * 0.7071, rad: 13 });
+      for (var a = 180; a <= 360; a += 2) marks.push({ x: g.x + g.br * Math.cos(a * Math.PI / 180), y: g.yb + g.br * Math.sin(a * Math.PI / 180), rad: 0 });
+      for (var fx = -g.br; fx <= g.br; fx += 4) marks.push({ x: g.x + fx, y: g.yb, rad: 0 });
+      figs[s.name] = {
+        x: g.x, headTop: g.hy - g.r, top: g.hy - g.r - e - v, marks: marks,
+        rects: [
+          { l: g.x - g.r - e, t: g.hy - g.r - e - v, r: g.x + g.r + e + v, b: g.hy + g.r + e, c: GAP_FIG },
+          { l: g.x - g.br, t: g.yb - g.br, r: g.x + g.br, b: g.yb, c: GAP_FIG }
+        ]
+      };
+    });
+    var slips = Array.prototype.slice.call(el.querySelectorAll(".slip"));
+    slips.forEach(function (sl) { fitSlip(sl, L.bubbleMaxWidth); });
+    slips.sort(function (a, b) {
+      return Math.abs(figs[a.getAttribute("data-seat")].x - STAGE.cx) - Math.abs(figs[b.getAttribute("data-seat")].x - STAGE.cx);
+    });
+    var placed = [];
+    slips.forEach(function (sl) {
+      var name = sl.getAttribute("data-seat"), f = figs[name], w = sl.offsetWidth, h = sl.offsetHeight;
+      var side = Math.abs(f.x - STAGE.cx) < 1 ? 0 : f.x < STAGE.cx ? -1 : 1;
+      var left = f.x - w / 2, bottom = f.top - STAGE.gapAboveHead, obstacles = placed.slice();
+      Object.keys(figs).forEach(function (k) { if (k !== name) obstacles = obstacles.concat(figs[k].rects); });
+      function hits(l, b) {
+        return obstacles.filter(function (o) { return l < o.r + o.c && l + w > o.l - o.c && b - h < o.b + o.c && b > o.t - o.c; });
+      }
+      // A neighbour's figure is what stops the slip: it hangs outward from its stem (stem 16 px in from the
+      // slip's inner edge), so it cannot be read as the neighbour's. Another slip stops it: move just clear.
+      function byFigure(hs, edge) {
+        return hs.some(function (o) { return o.c === GAP_FIG && (side < 0 ? o.l - o.c : o.r + o.c) === edge; });
+      }
+      for (var k = 0; k < 8; k++) {
+        var hs = hits(left, bottom);
+        if (!hs.length) break;
+        if (side < 0) {
+          var lim = Math.min.apply(null, hs.map(function (o) { return o.l - o.c; }));
+          if (lim >= f.x + 16 && lim - w >= 0) {
+            if (byFigure(hs, lim) && f.x + 16 - w >= 0) lim = f.x + 16;
+            left = lim - w; continue;
+          }
+        } else if (side > 0) {
+          var lim2 = Math.max.apply(null, hs.map(function (o) { return o.r + o.c; }));
+          if (lim2 <= f.x - 16 && lim2 + w <= STAGE.width) {
+            if (byFigure(hs, lim2) && f.x - 16 + w <= STAGE.width) lim2 = f.x - 16;
+            left = lim2; continue;
+          }
+        }
+        bottom = Math.min.apply(null, hs.map(function (o) { return o.t - o.c; }));   // rise above
+      }
+      left = Math.round(Math.max(0, Math.min(STAGE.width - w, left)));
+      var top = Math.round(bottom - h);
+      sl.style.left = left + "px"; sl.style.top = top + "px";
+      var stem = sl.querySelector(".stem");
+      stem.style.left = n(f.x - left - 1.5) + "px";
+      stem.style.height = n(f.headTop - (top + h) + 2) + "px";
+      placed.push({ l: left, t: top, r: left + w, b: top + h, c: GAP_SLIP });
+    });
+    // check what was placed against the drawn shapes: every figure, every ring, every other slip
+    var bad = 0;
+    slips.forEach(function (sl, i) {
+      var name = sl.getAttribute("data-seat"), f = figs[name], rc = placed[i];
+      var own = Infinity, other = Infinity, near = "none", gap = Infinity;
+      Object.keys(figs).forEach(function (k) {
+        figs[k].marks.forEach(function (m) {
+          var d = gapTo(rc, m.x, m.y) - m.rad;
+          if (k === name) own = Math.min(own, d);
+          else if (d < other) { other = d; near = k; }
+        });
+      });
+      placed.forEach(function (o, j) {
+        if (j !== i) gap = Math.min(gap, Math.hypot(Math.max(o.l - rc.r, rc.l - o.r, 0), Math.max(o.t - rc.b, rc.t - o.b, 0)));
+      });
+      var inside = rc.l >= 0 && rc.t >= 0 && rc.r <= STAGE.width && rc.b <= STAGE.height;
+      var above = rc.b <= f.top && f.x >= rc.l + 8 && f.x <= rc.r - 8;
+      if (own < MIN_CLEAR || other < MIN_CLEAR || gap < MIN_CLEAR || !inside || !above) bad++;
+      notes.push(id + " " + name + " slip: " + n(own) + " px to own figure, " + n(other) + " px to " + near + ", " +
+        (gap === Infinity ? "no other slip" : n(gap) + " px to nearest slip") + ", box " + rc.l + " " + rc.t + " " + rc.r + " " + rc.b +
+        (inside ? "" : ", OUTSIDE STAGE") + (above ? "" : ", NOT ABOVE OWN SEAT"));
+    });
+    return bad;
+  }
+  function layoutAll() {
+    fitNames();
+    var bad = 0, notes = [];
+    Array.prototype.forEach.call(document.querySelectorAll(".stage"), function (el) { bad += layoutStage(el, notes); });
+    Array.prototype.forEach.call(document.querySelectorAll(".slip.is-static"), function (el) { fitSlip(el, +el.getAttribute("data-max")); });
+    document.body.setAttribute("data-slip-overlaps", String(bad));
+    if (bad) console.error("Bubble overlap: " + bad + " slip(s) could not be placed clear of others.");
+    // open the file with #measure to list every slip's gaps (logged as errors so the look report prints them)
+    if (bad || location.hash === "#measure") notes.forEach(function (t) { console.error(t); });
+  }
+  void document.body.offsetWidth;
+  var faces = ["italic 450 14px 'Literata Variable'", "450 14px 'Literata Variable'", "400 17px 'Literata Variable'", "600 14px 'Archivo Variable'", "500 14px 'Archivo Variable'"];
+  Promise.all(faces.map(function (f) { return document.fonts.load(f).catch(function () {}); }))
+    .then(function () { return document.fonts.ready; })
+    .then(layoutAll);
+
+  /* ---------- theme switch ---------- */
+  function showTheme() {
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    document.getElementById("theme-switch").textContent = dark ? "Light theme" : "Dark theme";
+    Array.prototype.forEach.call(document.querySelectorAll(".js-theme-name"), function (el) { el.textContent = dark ? "Dark" : "Light"; });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".js-theme"), function (b) {
+    b.addEventListener("click", function () {
+      var dark = document.documentElement.getAttribute("data-theme") === "dark";
+      document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    });
+  });
+  new MutationObserver(showTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  showTheme();
+
+  /* ---------- Play: one bubble in 250 ms, stays, out 1.5 s ---------- */
+  document.getElementById("play-p1").addEventListener("click", function () {
+    var sl = document.querySelector("#p1-one-speaker .slip.is-play");
+    sl.classList.remove("is-playing");
+    void sl.offsetWidth;
+    sl.classList.add("is-playing");
+  });
+})();
+</script>
+</body>
+</html>

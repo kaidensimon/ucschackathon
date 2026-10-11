@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>The Lit Table, look A</title>
+<style data-fonts="@fontsource-variable/besley/wght.css @fontsource-variable/atkinson-hyperlegible-next/wght.css"></style>
+<style>
+/* ---------- tokens ---------- */
+:root {
+  color-scheme: light;
+  --page: #E9ECE8;
+  --surface: #F9FAF7;
+  --sunken: #DDE2DC;
+  --outline: #717A75;
+  --ink: #1D2427;
+  --on-ink: #F9FAF7;
+  --muted: #55605C;
+  --table: #4A3628;
+  --table-rim: #B58A55;
+  --on-table: #F5EFE6;
+  --on-table-muted: #D9CAB5;
+  --lamp: #F4B740;
+  --agreed: #2A6A43;
+  --agreed-on-table: #9AD3A8;
+  --error: #A52A1A;
+  --seat-lettering: #F9FAF7;
+  --seat-1: #4A4A04;
+  --seat-2: #1E3572;
+  --seat-3: #580D03;
+  --seat-4: #685DA3;
+  --seat-5: #005366;
+  --seat-6: #8A616C;
+  --seat-7: #485D7E;
+  --dot-keyline: var(--ink);
+  --title: 'Besley Variable';
+  --text: 'Atkinson Hyperlegible Next Variable';
+}
+[data-theme=dark] {
+  color-scheme: dark;
+  --page: #1C201F;
+  --surface: #262B29;
+  --sunken: #303634;
+  --outline: #808B86;
+  --ink: #E9ECE7;
+  --on-ink: #1C201F;
+  --muted: #A5AEA9;
+  --table: #5A4130;
+  --table-rim: #C49C66;
+  --on-table: #F6F0E6;
+  --on-table-muted: #DDCEB9;
+  --lamp: #F6C356;
+  --agreed: #8CCB9C;
+  --agreed-on-table: #A6DBB2;
+  --error: #FF8B73;
+  --seat-lettering: #1C201F;
+  --seat-1: #859D52;
+  --seat-2: #AEC9FD;
+  --seat-3: #E7B2BB;
+  --seat-4: #A8A1EB;
+  --seat-5: #24A5AB;
+  --seat-6: #CC7B8D;
+  --seat-7: #D3D7E1;
+  --dot-keyline: transparent;
+}
+/* Comparison only, light theme, opened with study.html#seats27 or #seats30 (see review.md). Not the study's own colours. */
+:root[data-seats="27"]:not([data-theme=dark]) { --seat-2: #283D75; --seat-3: #642C33; }
+:root[data-seats="30"]:not([data-theme=dark]) { --seat-2: #294385; --seat-3: #723339; }
+
+/* ---------- study page (not part of the look) ---------- */
+* { box-sizing: border-box; }
+html { background: var(--surface); }
+body {
+  margin: 0;
+  width: 1440px;
+  background: var(--surface);
+  color: var(--ink);
+  font: 400 14px/20px var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+.study-head {
+  height: 72px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.study-title { margin: 0; font: 500 24px/30px var(--title); letter-spacing: -0.01em; }
+.study-sub { margin: 0; font: 400 12px/16px var(--text); color: var(--muted); }
+.panel { margin: 0 0 48px; }
+.panel-caption {
+  height: 44px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.panel-caption h2 { margin: 0; font: 550 14px/20px var(--text); }
+
+/* ---------- controls ---------- */
+.btn {
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--outline);
+  border-radius: 8px;
+  background: transparent;
+  font: 550 14px/20px var(--text);
+}
+.btn-small { height: 30px; padding: 0 12px; font-size: 13px; }
+.btn-main {
+  height: 40px;
+  width: 100%;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--on-ink);
+  font: 550 14px/20px var(--text);
+  text-align: left;
+}
+.switch {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 8px;
+  background: var(--sunken);
+}
+.seg {
+  height: 30px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font: 550 14px/20px var(--text);
+}
+.seg[aria-pressed=true] {
+  border-color: var(--ink);
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 650;
+}
+.switch-small .seg { height: 26px; padding: 0 10px; font-size: 13px; }
+:where(button, input):focus { outline: none; }
+:where(button, input):focus-visible {
+  box-shadow: 0 0 0 2px var(--page), 0 0 0 4px var(--ink), 0 0 0 6px var(--lamp);
+}
+
+/* ---------- app window ---------- */
+.window {
+  width: 1440px;
+  height: 830px;
+  overflow: hidden;
+  background: var(--page);
+  display: grid;
+  grid-template: 48px 782px / 240px 1200px;
+}
+.topbar {
+  grid-column: 1 / 3;
+  background: var(--sunken);
+  display: flex;
+  align-items: center;
+  padding-right: 16px;
+}
+.appname {
+  width: 240px;
+  padding-left: 28px;
+  font: 600 17px/24px var(--title);
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+.seated { display: flex; gap: 20px; padding-left: 24px; margin: 0; list-style: none; }
+.seated li { display: flex; align-items: center; gap: 7px; font: 550 14px/20px var(--text); }
+.seated i { width: 14px; height: 14px; border-radius: 50%; }
+.pill {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px 4px 12px;
+  border-radius: 999px;
+  background: var(--surface);
+  font: 550 13px/20px var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lamp); box-shadow: 0 0 0 1.5px var(--dot-keyline); }
+.pill-agreed { color: var(--agreed); }
+.pill-agreed svg { display: block; }
+
+.sidebar {
+  background: var(--sunken);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.nav { margin: 16px 0 0; padding: 0; list-style: none; }
+.nav button, .sidefoot button {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  text-align: left;
+  font: 550 14px/20px var(--text);
+}
+.sidefoot { margin-top: auto; }
+.sidenote { margin: 8px 12px 0; font: 400 12px/16px var(--text); color: var(--muted); }
+
+.conv { position: relative; }
+.ask { position: absolute; left: 300px; top: 20px; width: 600px; }
+.ask-who { margin: 0; font: 400 12px/16px var(--text); color: var(--muted); }
+.ask-text { margin: 2px 0 8px; font: 400 16px/26px var(--text); }
+.files { display: flex; align-items: center; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.chip {
+  padding: 3px 8px;
+  border: 1px solid var(--outline);
+  border-radius: 4px;
+  background: var(--surface);
+  font: 400 13px/20px var(--text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.meta { font: 400 12px/16px var(--text); color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ---------- stage ---------- */
+.stage { position: absolute; left: 80px; top: 124px; width: 1040px; height: 558px; }
+.stage-svg { position: absolute; left: 0; top: 0; display: block; overflow: visible; }
+.stage-svg text { font-family: var(--text); font-variant-numeric: tabular-nums; }
+.tabletop { fill: var(--table); }
+.tablerim { fill: none; stroke: var(--table-rim); stroke-width: 3; }
+.lamp-quiet { fill: none; stroke: var(--on-table-muted); stroke-width: 1.5; }
+.lamp-lit { fill: var(--lamp); }
+.t-round { fill: var(--on-table-muted); font-size: 14px; font-weight: 400; text-anchor: middle; }
+.t-time { fill: var(--on-table); font-size: 22px; font-weight: 600; text-anchor: middle; }
+.t-caption { fill: var(--on-table); font-size: 14px; font-weight: 550; text-anchor: middle; }
+.m-solid { fill: var(--on-table); }
+.m-hollow { fill: none; stroke: var(--on-table); stroke-width: 1.5; }
+.m-notch { fill: var(--on-table); }
+.fig { outline: none; }
+.fig .body, .fig .head { fill: var(--seat); }
+.fig .ring-gap { fill: var(--page); }
+.fig .ring { fill: none; stroke: var(--ink); stroke-width: 3; }
+.fig .name { fill: var(--seat-lettering); font-weight: 650; text-anchor: middle; }
+.fig .num { fill: var(--seat-lettering); font-weight: 700; text-anchor: middle; }
+.fig .focus-ink, .fig .focus-lamp { display: none; fill: none; stroke-width: 2; }
+.fig .focus-ink { stroke: var(--ink); }
+.fig .focus-lamp { stroke: var(--lamp); }
+.fig.is-focused .focus-ink, .fig.is-focused .focus-lamp,
+.fig:focus-visible .focus-ink, .fig:focus-visible .focus-lamp { display: inline; }
+.seat-1 { --seat: var(--seat-1); }
+.seat-2 { --seat: var(--seat-2); }
+.seat-3 { --seat: var(--seat-3); }
+.seat-4 { --seat: var(--seat-4); }
+.seat-5 { --seat: var(--seat-5); }
+.seat-6 { --seat: var(--seat-6); }
+.seat-7 { --seat: var(--seat-7); }
+.vm-key { fill: var(--seat-lettering); }
+.vm-check-disc { fill: var(--ink); }
+.vm-check { fill: none; stroke: var(--on-ink); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.vm-cross-disc { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+.vm-cross { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; }
+
+.bubble {
+  position: absolute;
+  padding: 8px 12px;
+  border: 1px solid var(--outline);
+  border-radius: 4px;
+  background: var(--surface);
+  font: 450 13px/18px var(--text);
+  opacity: var(--strength, 1);
+}
+.bubble span { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.bubble::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--tail, 50%) - 5px);
+  bottom: -5.5px;
+  width: 9px;
+  height: 9px;
+  background: var(--surface);
+  border-right: 1px solid var(--outline);
+  border-bottom: 1px solid var(--outline);
+  transform: rotate(45deg);
+}
+.bubble-play { opacity: 0; transition: opacity 1500ms linear; }
+.bubble-play.is-shown { opacity: 1; transition: opacity 250ms ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .bubble-play, .bubble-play.is-shown { transition: none; }
+}
+
+.msg {
+  position: absolute;
+  height: 44px;
+  width: 760px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border: 1px solid var(--outline);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.stage .msg { left: 140px; top: 528px; } /* 8 px under the table's flat edge (y 520), so the whole edge shows */
+.conv > .msg { left: 220px; bottom: 28px; }
+.msg input { flex: 1; min-width: 0; height: 100%; border: 0; background: transparent; font: 400 14px/20px var(--text); }
+.msg input::placeholder { color: var(--muted); opacity: 1; }
+.msg input:focus-visible { box-shadow: none; }
+.msg:focus-within { box-shadow: 0 0 0 2px var(--page), 0 0 0 4px var(--ink), 0 0 0 6px var(--lamp); }
+.stagefoot {
+  position: absolute;
+  left: 80px;
+  top: 710px;
+  width: 1040px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.stagefoot-left { display: flex; gap: 8px; }
+
+/* ---------- released answer ---------- */
+.thread { position: absolute; left: 300px; top: 20px; width: 600px; }
+.thread .ask { position: static; }
+.folded {
+  margin-top: 32px;
+  padding: 20px 24px;
+  border: 1px solid var(--outline);
+  border-radius: 4px;
+  background: var(--surface);
+}
+.folded-top { display: flex; align-items: flex-start; justify-content: space-between; }
+.folded-heading { margin: 0; display: flex; align-items: center; gap: 10px; font: 500 20px/26px var(--title); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.folded-heading svg { display: block; flex: none; }
+.agreed-disc { fill: var(--agreed); }
+.agreed-check { fill: none; stroke: var(--surface); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.folded-meta { margin: 2px 0 0 30px; }
+.marks { display: flex; gap: 20px; margin: 16px 0 0; padding: 0; list-style: none; }
+.marks li { display: flex; align-items: center; gap: 4px; font: 550 13px/20px var(--text); }
+.marks svg { display: block; }
+.mini-head { fill: var(--seat); }
+.answer {
+  margin-top: 16px;
+  padding: 24px;
+  border-radius: 4px;
+  background: var(--surface);
+}
+.answer p { margin: 0 0 16px; font: 400 16px/26px var(--text); }
+.cited { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; }
+.dissent { display: flex; gap: 10px; margin: 20px 0 0; font: 400 14px/20px var(--text); }
+.dissent svg { flex: none; margin-top: 1px; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="pool">
+      <stop offset="0" style="stop-color:var(--lamp);stop-opacity:.45"/>
+      <stop offset="1" style="stop-color:var(--lamp);stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+</svg>
+
+<header class="study-head">
+  <div>
+    <h1 class="study-title">The Lit Table</h1>
+    <p class="study-sub">Look A. Four panels, each one app window 1440 by 830.</p>
+  </div>
+  <div class="switch switch-small" role="group" aria-label="Theme">
+    <button class="seg" type="button" data-set-theme="light" aria-pressed="true">Light</button>
+    <button class="seg" type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+  </div>
+</header>
+
+<main id="panels"></main>
+
+<script type="application/json" id="study-content">
+{
+ "window": { "width": 1440, "height": 830 },
+ "frame": {
+  "topBarHeight": 48,
+  "sidebarWidth": 240,
+  "sidebarItems": ["New chat", "History", "Library", "Models", "Settings"],
+  "sidebarFooter": ["Theme", "Shortcuts", "Sample data. Invented files and answers."],
+  "topBarLeft": "see each panel's topBarLeft",
+  "messageBoxPlaceholder": "Add a note for the next round"
+ },
+ "stage": { "width": 1040, "height": 558, "centreX": 520.0, "flatEdgeY": 520 },
+ "layouts": {
+  "five": {
+   "headDiameter": 72, "ringRadius": 263, "tableRadius": 204, "bubbleMaxWidth": 280,
+   "seats": [
+    { "seat": 1, "name": "Phi", "x": 269.9, "bodyBottomY": 438.7, "angleDeg": 18.0 },
+    { "seat": 2, "name": "Llama", "x": 365.4, "bodyBottomY": 307.2, "angleDeg": 54.0 },
+    { "seat": 3, "name": "Qwen", "x": 520.0, "bodyBottomY": 257.0, "angleDeg": 90.0 },
+    { "seat": 4, "name": "Gemma", "x": 674.6, "bodyBottomY": 307.2, "angleDeg": 126.0 },
+    { "seat": 5, "name": "Mistral", "x": 770.1, "bodyBottomY": 438.7, "angleDeg": 162.0 }
+   ]
+  },
+  "seven": {
+   "headDiameter": 64, "ringRadius": 277, "tableRadius": 224, "bubbleMaxWidth": 240,
+   "seats": [
+    { "seat": 1, "name": "Phi", "x": 249.9, "bodyBottomY": 458.4, "angleDeg": 12.9 },
+    { "seat": 2, "name": "Llama", "x": 303.4, "bodyBottomY": 347.3, "angleDeg": 38.6 },
+    { "seat": 3, "name": "Granite", "x": 399.8, "bodyBottomY": 270.4, "angleDeg": 64.3 },
+    { "seat": 4, "name": "Qwen", "x": 520.0, "bodyBottomY": 243.0, "angleDeg": 90.0 },
+    { "seat": 5, "name": "Gemma", "x": 640.2, "bodyBottomY": 270.4, "angleDeg": 115.7 },
+    { "seat": 6, "name": "Hermes", "x": 736.6, "bodyBottomY": 347.3, "angleDeg": 141.4 },
+    { "seat": 7, "name": "Mistral", "x": 790.1, "bodyBottomY": 458.4, "angleDeg": 167.1 }
+   ]
+  }
+ },
+ "bubble": { "lines": 2, "gapAboveHead": 12 },
+ "question": {
+  "text": "Can I end my apartment lease early, and what would it cost me?",
+  "files": [
+   { "name": "Lease 2025.pdf", "pages": 14 },
+   { "name": "Renewal letter 2026.pdf", "pages": 2 },
+   { "name": "House rules.docx", "pages": 6 }
+  ],
+  "limit": "5:00"
+ },
+ "panels": [
+  {
+   "id": "p1-one-speaker", "title": "Mid-debate, one speaker", "layout": "five", "topBarLeft": "Council of 5",
+   "statusPill": "Round 2, 3:10 left, 2 of 5 agree",
+   "tableCentre": { "round": "Round 2", "timeLeft": "3:10 left", "meter": { "agree": 2, "seats": 5, "needed": 4 }, "caption": "2 of 5 agree, needs 4" },
+   "speaking": ["Qwen"], "voteMarks": null,
+   "bubbles": [
+    { "seat": "Qwen", "text": "Tells Mistral the fee is one month at the new rent.", "strength": 1 },
+    { "seat": "Gemma", "text": "Cites the renewal letter, page 1: fee is one month.", "strength": 1 },
+    { "seat": "Llama", "text": "Holds that a letter cannot change the lease.", "strength": 0.5 }
+   ]
+  },
+  {
+   "id": "p2-all-speaking", "title": "All five speaking at once (stress case; shown because the engine has not decided)", "layout": "five", "topBarLeft": "Council of 5",
+   "statusPill": "Round 2, 3:10 left, 2 of 5 agree",
+   "tableCentre": { "round": "Round 2", "timeLeft": "3:10 left", "meter": { "agree": 2, "seats": 5, "needed": 4 }, "caption": "2 of 5 agree, needs 4" },
+   "speaking": ["Phi", "Llama", "Qwen", "Gemma", "Mistral"], "voteMarks": null,
+   "bubbles": [
+    { "seat": "Phi", "text": "Says the landlord never signed the letter.", "strength": 1 },
+    { "seat": "Llama", "text": "Holds that a letter cannot change the lease.", "strength": 1 },
+    { "seat": "Qwen", "text": "Tells Mistral the fee is one month at the new rent.", "strength": 1 },
+    { "seat": "Gemma", "text": "Cites the renewal letter, page 1: fee is one month.", "strength": 1 },
+    { "seat": "Mistral", "text": "Now agrees: one month, not two.", "strength": 1 }
+   ]
+  },
+  {
+   "id": "p3-seven-after-vote", "title": "Seven seats, just after the round 1 vote", "layout": "seven", "topBarLeft": "Council of 7",
+   "statusPill": "Round 1 vote, 4 of 7 agree",
+   "tableCentre": { "round": "Round 1 vote", "timeLeft": "3:36 left", "meter": { "agree": 4, "seats": 7, "needed": 6 }, "caption": "4 of 7 agree, needs 6" },
+   "speaking": [],
+   "voteMarks": { "Phi": "cross", "Llama": "cross", "Granite": "check", "Qwen": "check", "Gemma": "check", "Hermes": "cross", "Mistral": "check" },
+   "bubbles": [
+    { "seat": "Hermes", "text": "Asks which rent the fee is based on.", "strength": 0.5 }
+   ]
+  },
+  {
+   "id": "p4-released", "title": "The released answer in chat", "layout": null, "topBarLeft": "Council of 5",
+   "statusPill": "Agreed, 4 of 5",
+   "foldedCard": {
+    "heading": "Agreed 4 of 5", "meta": "3 rounds, 3:40",
+    "seatMarks": { "Phi": "cross", "Llama": "check", "Qwen": "check", "Gemma": "check", "Mistral": "check" },
+    "button": "See the debate"
+   },
+   "answer": {
+    "paragraphs": [
+     "Yes. You can end the lease early by giving 60 days' written notice and paying one month's rent at the new rate, $2,520.",
+     "To be out by the end of February, send the notice by 30 December 2026. An email counts as written notice."
+    ],
+    "citations": [
+     { "file": "Renewal letter 2026.pdf", "page": 1 },
+     { "file": "Lease 2025.pdf", "page": 9 },
+     { "file": "House rules.docx", "page": 4 }
+    ],
+    "filesCitedLabel": "Files cited",
+    "dissent": "Phi disagreed: the renewal letter has one signature (page 2), so the old terms may still apply."
+   },
+   "messageBoxPlaceholder": "Message the council"
+  }
+ ],
+ "wording": { "switch": ["Table", "Chat"], "stageButtons": ["Pause", "Stop"] }
+}
+</script>
+
+<script>
+(() => {
+  const C = JSON.parse(document.getElementById("study-content").textContent);
+  const CX = C.stage.centreX;
+  const FY = C.stage.flatEdgeY;
+  const n = (v) => Math.round(v * 100) / 100;
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+
+  // Where the study places each bubble. Words and strength come from the content above.
+  // side "c" = centred on its seat, "l:x" = left edge at x, "r:x" = right edge at x (pushed away from a neighbour).
+  const PLACE = {
+    "p1-one-speaker": { Qwen: "c", Gemma: "l:592", Llama: "r:448" },
+    "p2-all-speaking": { Phi: "r:307", Llama: "r:448", Qwen: "c", Gemma: "l:592", Mistral: "l:733" },
+    "p3-seven-after-vote": { Hermes: "l:716" }, // pushed right, away from Gemma's head; tail stays over Hermes
+  };
+  // Panel 1 only: the one bubble the Play button fades in and out.
+  const PLAY = { panel: "p1-one-speaker", seat: "Phi", text: "Says the landlord never signed the letter.", side: "r:307" };
+  const FOCUSED = { panel: "p3-seven-after-vote", seat: "Granite" };
+
+  function geom(seat, D) {
+    const r = D / 2;
+    const bh = 0.7 * D;
+    const hy = seat.bodyBottomY - bh - 2 - r;
+    return { x: seat.x, bb: seat.bodyBottomY, r, bh, hy, top: hy - r };
+  }
+
+  function voteMark(kind, mx, my, k) {
+    // k scales the 20 px mark; 1 on the table, smaller in the folded card
+    const key = `<circle class="vm-key" cx="${n(mx)}" cy="${n(my)}" r="${n(12 * k)}"/>`;
+    if (kind === "check") {
+      return `${key}<circle class="vm-check-disc" cx="${n(mx)}" cy="${n(my)}" r="${n(10 * k)}"/>` +
+        `<path class="vm-check" d="M${n(mx - 4.6 * k)} ${n(my + 0.4 * k)}l${n(3.2 * k)} ${n(3.2 * k)}l${n(6 * k)} ${n(-7 * k)}"/>`;
+    }
+    return `${key}<circle class="vm-cross-disc" cx="${n(mx)}" cy="${n(my)}" r="${n(10 * k - 1)}"/>` +
+      `<path class="vm-cross" d="M${n(mx - 3.6 * k)} ${n(my - 3.6 * k)}l${n(7.2 * k)} ${n(7.2 * k)}M${n(mx + 3.6 * k)} ${n(my - 3.6 * k)}l${n(-7.2 * k)} ${n(7.2 * k)}"/>`;
+  }
+
+  function stage(panel) {
+    const L = C.layouts[panel.layout];
+    const D = L.headDiameter;
+    const R = L.tableRadius;
+    const N = L.seats.length;
+    const speaking = new Set(panel.speaking);
+    const lampR = R - 30;
+    const poolR = (0.8 * 2 * lampR * Math.sin(Math.PI / (2 * N))) / 2; // 0.8 x distance to the next lamp
+    const nameSize = D >= 70 ? 15 : 13;
+    const numSize = D >= 70 ? 14 : 13;
+    const boxes = [];
+    const half = `M${CX - R} ${FY}A${R} ${R} 0 0 1 ${CX + R} ${FY}Z`;
+    let s = `<svg class="stage-svg" width="${C.stage.width}" height="${C.stage.height}" viewBox="0 0 ${C.stage.width} ${C.stage.height}">`;
+    s += `<clipPath id="clip-${panel.id}"><path d="${half}"/></clipPath>`;
+    s += `<path class="tabletop" d="${half}"/>`;
+    s += `<path class="tablerim" d="M${CX - R + 1.5} ${FY}A${R - 1.5} ${R - 1.5} 0 0 1 ${CX + R - 1.5} ${FY}"/>`;
+    // lamps: one per seat, 30 px inside the rim on the seat's own angle
+    let pools = "";
+    let lamps = "";
+    for (const seat of L.seats) {
+      const a = (seat.angleDeg * Math.PI) / 180;
+      const lx = n(CX - lampR * Math.cos(a));
+      const ly = n(FY - lampR * Math.sin(a));
+      if (speaking.has(seat.name)) {
+        pools += `<circle cx="${lx}" cy="${ly}" r="${n(poolR)}" fill="url(#pool)"/>`;
+        lamps += `<circle class="lamp-lit" cx="${lx}" cy="${ly}" r="6"/>`;
+      } else {
+        lamps += `<circle class="lamp-quiet" cx="${lx}" cy="${ly}" r="4.25"/>`;
+      }
+    }
+    s += `<g clip-path="url(#clip-${panel.id})">${pools}</g>${lamps}`;
+    // middle of the table
+    const t = panel.tableCentre;
+    const m = t.meter;
+    const pitch = 20;
+    const extra = 10; // room for the notch
+    const width = (m.seats - 1) * pitch + extra;
+    let mx = CX - width / 2;
+    let meter = "";
+    for (let i = 0; i < m.seats; i++) {
+      meter += i < m.agree ? `<circle class="m-solid" cx="${n(mx)}" cy="${FY - 59}" r="6"/>` : `<circle class="m-hollow" cx="${n(mx)}" cy="${FY - 59}" r="5.25"/>`;
+      if (i === m.needed - 1) {
+        meter += `<rect class="m-notch" x="${n(mx + pitch / 2 + extra / 2 - 1)}" y="${FY - 69}" width="2" height="20"/>`;
+        mx += extra;
+      }
+      mx += pitch;
+    }
+    s += `<text class="t-round" x="${CX}" y="${FY - 112}">${esc(t.round)}</text>`;
+    s += `<text class="t-time" x="${CX}" y="${FY - 84}">${esc(t.timeLeft)}</text>`;
+    s += `<g aria-hidden="true">${meter}</g>`;
+    s += `<text class="t-caption" x="${CX}" y="${FY - 33}">${esc(t.caption)}</text>`;
+    // 8 px of page colour between every body and the table. The table radius gives it; nothing is cut out of the walnut.
+    // A body's nearest point to the table is on its flat bottom edge.
+    for (const seat of L.seats) {
+      const g = geom(seat, D);
+      const nearX = Math.min(Math.max(CX, g.x - g.bh), g.x + g.bh);
+      const clear = Math.hypot(nearX - CX, FY - g.bb) - R;
+      if (clear < 8) console.error(`table gap: ${panel.id} ${seat.name}: body ${n(clear)} px from the table, needs 8`);
+    }
+    // figures
+    for (const seat of L.seats) {
+      const g = geom(seat, D);
+      const isSpeaking = speaking.has(seat.name);
+      const vote = panel.voteMarks ? panel.voteMarks[seat.name] : null;
+      const focused = FOCUSED.panel === panel.id && FOCUSED.seat === seat.name;
+      const label = `Seat ${seat.seat}, ${seat.name}` + (isSpeaking ? ", speaking" : "") + (vote ? (vote === "check" ? ", agrees" : ", disagrees") : "");
+      s += `<g class="fig seat-${seat.seat}${focused ? " is-focused" : ""}" tabindex="0" role="button" aria-label="${esc(label)}">`;
+      const fx = g.x - g.bh;
+      const fw = 2 * g.bh;
+      const fh = g.bb - g.top;
+      s += `<rect class="focus-lamp" x="${n(fx - 9)}" y="${n(g.top - 9)}" width="${n(fw + 18)}" height="${n(fh + 18)}" rx="11"/>`;
+      s += `<rect class="focus-ink" x="${n(fx - 7)}" y="${n(g.top - 7)}" width="${n(fw + 14)}" height="${n(fh + 14)}" rx="9"/>`;
+      s += `<path class="body" d="M${n(fx)} ${g.bb}A${n(g.bh)} ${n(g.bh)} 0 0 1 ${n(fx + fw)} ${g.bb}Z"/>`;
+      if (isSpeaking) {
+        s += `<circle class="ring-gap" cx="${g.x}" cy="${n(g.hy)}" r="${g.r + 8}"/><circle class="ring" cx="${g.x}" cy="${n(g.hy)}" r="${g.r + 4.5}"/>`;
+      }
+      s += `<circle class="head" cx="${g.x}" cy="${n(g.hy)}" r="${g.r}"/>`;
+      s += `<text class="name" x="${g.x}" y="${n(g.hy)}" dy=".35em" font-size="${nameSize}">${esc(seat.name)}</text>`;
+      s += `<text class="num" x="${g.x}" y="${n(g.bb - g.bh * 0.3)}" dy=".35em" font-size="${numSize}">${seat.seat}</text>`;
+      boxes.push({ seat: seat.name, x0: g.x - g.bh, y0: g.bb - g.bh, x1: g.x + g.bh, y1: g.bb });
+      const hr = g.r + (isSpeaking ? 6 : 0);
+      boxes.push({ seat: seat.name, x0: g.x - hr, y0: g.hy - hr, x1: g.x + hr, y1: g.hy + hr });
+      if (vote) {
+        // on the outer upper side of the head, away from the neighbour seat
+        const side = g.x < CX ? -1 : 1;
+        const vx = g.x + side * g.r * 0.7071;
+        const vy = g.hy - g.r * 0.7071;
+        s += voteMark(vote, vx, vy, 1);
+        boxes.push({ seat: seat.name, x0: vx - 12, y0: vy - 12, x1: vx + 12, y1: vy + 12 });
+      }
+      s += `</g>`;
+    }
+    s += `</svg>`;
+    // bubbles
+    const gapAbove = C.bubble.gapAboveHead;
+    const byName = Object.fromEntries(L.seats.map((x) => [x.name, x]));
+    const list = panel.bubbles.map((b) => ({ ...b, side: PLACE[panel.id][b.seat] }));
+    if (PLAY.panel === panel.id) list.push({ seat: PLAY.seat, text: PLAY.text, side: PLAY.side, play: true });
+    for (const b of list) {
+      const g = geom(byName[b.seat], D);
+      const bottom = g.top - (speaking.has(b.seat) ? 6 : 0) - gapAbove; // 12 px above the head, or above its speaking ring
+      s += `<div class="bubble${b.play ? " bubble-play" : ""}" data-seat="${esc(b.seat)}" data-x="${g.x}" data-bottom="${n(bottom)}" data-side="${b.side}" data-max="${L.bubbleMaxWidth}"` +
+        (b.play ? ` aria-hidden="true"` : "") + (b.strength !== undefined && b.strength !== 1 ? ` style="--strength:${b.strength}"` : "") +
+        `><span><span class="vh">${esc(b.seat)}: </span>${esc(b.text)}</span></div>`;
+    }
+    return { html: s, boxes };
+  }
+
+  function frame(panel, inner) {
+    const L = C.layouts[panel.layout || "five"];
+    const live = panel.layout !== null;
+    const seated = L.seats.map((x) => `<li><i class="seat-${x.seat}" style="background:var(--seat)"></i>${esc(x.name)}</li>`).join("");
+    const pill = live
+      ? `<div class="pill"><span class="pill-dot"></span>${esc(panel.statusPill)}</div>`
+      : `<div class="pill pill-agreed"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.4l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>${esc(panel.statusPill)}</div>`;
+    const [newChat, ...items] = C.frame.sidebarItems;
+    const [f1, f2, note] = C.frame.sidebarFooter;
+    return `<div class="window">
+      <div class="topbar"><div class="appname">${esc(panel.topBarLeft)}</div><ul class="seated" aria-label="Seated">${seated}</ul>${pill}</div>
+      <nav class="sidebar" aria-label="Main">
+        <button class="btn-main" type="button">${esc(newChat)}</button>
+        <ul class="nav">${items.map((x) => `<li><button type="button">${esc(x)}</button></li>`).join("")}</ul>
+        <div class="sidefoot"><button type="button">${esc(f1)}</button><button type="button">${esc(f2)}</button><p class="sidenote">${esc(note)}</p></div>
+      </nav>
+      <div class="conv">${inner}</div>
+    </div>`;
+  }
+
+  function ask() {
+    const q = C.question;
+    return `<div class="ask"><p class="ask-who">You</p><p class="ask-text">${esc(q.text)}</p>
+      <ul class="files">${q.files.map((f) => `<li class="chip">${esc(f.name)}, ${f.pages} pages</li>`).join("")}<li class="meta">Time limit ${esc(q.limit)}</li></ul></div>`;
+  }
+
+  function debate(panel) {
+    const st = stage(panel);
+    const [pause, stop] = C.wording.stageButtons;
+    const [table, chat] = C.wording.switch;
+    const inner = `${ask()}
+      <div class="stage" data-boxes='${JSON.stringify(st.boxes.map((b) => ({ seat: b.seat, x0: n(b.x0), y0: n(b.y0), x1: n(b.x1), y1: n(b.y1) })))}'>${st.html}
+        <div class="msg"><input type="text" aria-label="${esc(C.frame.messageBoxPlaceholder)}" placeholder="${esc(C.frame.messageBoxPlaceholder)}"></div>
+      </div>
+      <div class="stagefoot">
+        <div class="stagefoot-left"><button class="btn" type="button">${esc(pause)}</button><button class="btn" type="button">${esc(stop)}</button></div>
+        <div class="switch" role="group" aria-label="View"><button class="seg" type="button" aria-pressed="true">${esc(table)}</button><button class="seg" type="button" aria-pressed="false">${esc(chat)}</button></div>
+      </div>`;
+    return frame(panel, inner);
+  }
+
+  function miniHead(seat, kind) {
+    return `<svg width="38" height="34" viewBox="0 0 38 34" class="seat-${seat.seat}" aria-hidden="true"><circle class="mini-head" cx="14" cy="20" r="13"/>${voteMark(kind, 23.2, 10.8, 0.8)}</svg>`;
+  }
+
+  function released(panel) {
+    const f = panel.foldedCard;
+    const a = panel.answer;
+    const seats = C.layouts.five.seats;
+    const phi = seats.find((x) => a.dissent.startsWith(x.name));
+    const inner = `<div class="thread">${ask()}
+      <section class="folded" aria-label="The debate, folded">
+        <div class="folded-top">
+          <div>
+            <h3 class="folded-heading"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle class="agreed-disc" cx="10" cy="10" r="10"/><path class="agreed-check" d="M5.4 10.4l3.2 3.2l6 -7"/></svg>${esc(f.heading)}</h3>
+            <p class="meta folded-meta">${esc(f.meta)}</p>
+          </div>
+          <button class="btn" type="button">${esc(f.button)}</button>
+        </div>
+        <ul class="marks">${seats.map((x) => `<li>${miniHead(x, f.seatMarks[x.name])}${esc(x.name)}<span class="vh">${f.seatMarks[x.name] === "check" ? " agreed" : " disagreed"}</span></li>`).join("")}</ul>
+      </section>
+      <div class="answer">
+        ${a.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}
+        <div class="cited"><span class="meta">${esc(a.filesCitedLabel)}</span>${a.citations.map((c) => `<span class="chip">${esc(c.file)}, p. ${c.page}</span>`).join("")}</div>
+        <div class="dissent">${miniHead(phi, "cross")}<span>${esc(a.dissent)}</span></div>
+      </div>
+    </div>
+    <div class="msg"><input type="text" aria-label="${esc(panel.messageBoxPlaceholder)}" placeholder="${esc(panel.messageBoxPlaceholder)}"></div>`;
+    return frame(panel, inner);
+  }
+
+  document.getElementById("panels").innerHTML = C.panels.map((p) => {
+    const play = PLAY.panel === p.id ? `<button class="btn btn-small" type="button" id="play">Play one bubble</button>` : "";
+    return `<section class="panel" id="${p.id}"><div class="panel-caption"><h2>${esc(p.title)}</h2>${play}</div>${p.layout ? debate(p) : released(p)}</section>`;
+  }).join("");
+
+  // ---- bubble layout pass: shrink to the text, place, rise above a neighbour, then check ----
+  function layout() {
+    const problems = [];
+    for (const st of document.querySelectorAll(".stage")) {
+      const boxes = JSON.parse(st.dataset.boxes);
+      const els = [...st.querySelectorAll(".bubble")].sort((a, b) => (a.dataset.side === "c") - (b.dataset.side === "c"));
+      const placed = [];
+      for (const el of els) {
+        const max = Number(el.dataset.max);
+        el.style.width = `${max}px`;
+        el.style.width = "max-content";
+        const natural = Math.ceil(el.getBoundingClientRect().width) + 1;
+        if (natural <= 232) {
+          // short enough for one line
+          el.style.width = `${natural}px`;
+        } else {
+          // two lines, as narrow as the words allow, so both lines are about the same length
+          let lo = 96;
+          let hi = max;
+          while (hi - lo > 1) {
+            const mid = (lo + hi) >> 1;
+            el.style.width = `${mid}px`;
+            if (el.offsetHeight <= 54 && el.firstChild.scrollHeight <= 36) hi = mid; else lo = mid;
+          }
+          el.style.width = `${hi}px`;
+        }
+        const w = el.offsetWidth;
+        const h = el.offsetHeight;
+        const sx = Number(el.dataset.x);
+        const [mode, val] = el.dataset.side.split(":");
+        const left = mode === "c" ? Math.round(sx - w / 2) : mode === "l" ? Number(val) : Number(val) - w;
+        let bottom = Number(el.dataset.bottom);
+        for (const p of placed) {
+          if (p.play || el.classList.contains("bubble-play")) continue;
+          if (left < p.x1 + 8 && left + w > p.x0 - 8 && bottom > p.y0 - 8 && bottom - h < p.y1 + 8) bottom = Math.min(bottom, p.y0 - 8);
+        }
+        el.style.left = `${left}px`;
+        el.style.top = `${bottom - h}px`;
+        el.style.setProperty("--tail", `${sx - left}px`);
+        const box = { seat: el.dataset.seat, x0: left, y0: bottom - h, x1: left + w, y1: bottom, play: el.classList.contains("bubble-play") };
+        const where = `${st.parentNode.parentNode.parentNode.id} ${box.seat}`;
+        if (h > 54 || el.firstChild.scrollHeight > 36) problems.push(`${where}: more than 2 lines`);
+        if (sx - left < 12 || left + w - sx < 12) problems.push(`${where}: tail off the bubble`);
+        if (box.x0 < 0 || box.y0 < 0 || box.x1 > 1040) problems.push(`${where}: outside the stage`);
+        for (const o of placed) if (box.x0 < o.x1 && box.x1 > o.x0 && box.y0 < o.y1 && box.y1 > o.y0) problems.push(`${where}: overlaps the ${o.seat} bubble`);
+        // 4 px clear of every figure (head, body, speaking ring, vote mark)
+        for (const o of boxes) if (box.x0 < o.x1 + 4 && box.x1 > o.x0 - 4 && box.y0 < o.y1 + 4 && box.y1 > o.y0 - 4) problems.push(`${where}: less than 4 px from ${o.seat}`);
+        placed.push(box);
+      }
+      // the message box stays 8 px under the table's flat edge
+      const msg = st.querySelector(".msg");
+      if (msg.offsetTop < FY + 8) problems.push(`${st.parentNode.parentNode.parentNode.id}: message box ${msg.offsetTop - FY} px under the table, needs 8`);
+    }
+    for (const p of problems) console.error(`bubble layout: ${p}`);
+  }
+  layout();
+  document.fonts.ready.then(layout);
+
+  // ---- theme switch ----
+  const root = document.documentElement;
+  const variant = location.hash.match(/seats(\d+)/);
+  if (variant) root.dataset.seats = variant[1];
+  const themeButtons = [...document.querySelectorAll("[data-set-theme]")];
+  const sync = () => { for (const b of themeButtons) b.setAttribute("aria-pressed", String(b.dataset.setTheme === (root.dataset.theme || "light"))); };
+  for (const b of themeButtons) b.addEventListener("click", () => { root.dataset.theme = b.dataset.setTheme; });
+  new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+  sync();
+
+  // ---- Play: one bubble fades in 250 ms, stays, fades out 1.5 s ----
+  const play = document.getElementById("play");
+  const playBubble = document.querySelector(".bubble-play");
+  let busy = false;
+  play.addEventListener("click", () => {
+    if (busy) return;
+    busy = true;
+    playBubble.classList.add("is-shown");
+    setTimeout(() => { playBubble.classList.remove("is-shown"); }, 250 + 3000);
+    setTimeout(() => { busy = false; }, 250 + 3000 + 1500);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "PDF starting palette (report only; known shortfalls)",
+  "pairs": [
+    { "pair": "text on background", "theme": "light", "fg": "#2B2A27", "bg": "#F5F1EA", "min": 4.5 },
+    { "pair": "muted text on background", "theme": "light", "fg": "#6F6A5F", "bg": "#F5F1EA", "min": 4.5 },
+    { "pair": "white label on clay accent", "theme": "light", "fg": "#FFFFFF", "bg": "#C4694D", "min": 4.5 },
+    { "pair": "hairline border on background", "theme": "light", "fg": "#E4DDD0", "bg": "#F5F1EA", "min": 3 },
+    { "pair": "sage seat on background", "theme": "light", "fg": "#6E9A7E", "bg": "#F5F1EA", "min": 3 },
+    { "pair": "amber seat on background", "theme": "light", "fg": "#C9993F", "bg": "#F5F1EA", "min": 3 },
+    { "pair": "ink name on slate seat", "theme": "light", "fg": "#2B2A27", "bg": "#5F82A6", "min": 4.5 },
+    { "pair": "error text on surface", "theme": "dark", "fg": "#D4685D", "bg": "#2A2825", "min": 4.5 }
+  ]
+}

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>zoom</title>
+<style>
+html, body { margin: 0; overflow: hidden; background: #888; }
+iframe { border: 0; width: 1440px; height: 3900px; transform-origin: 0 0; display: block; }
+</style>
+</head>
+<body>
+<!-- Working page for look A: shows one part of study.html enlarged, so small parts can be checked.
+     Hash: x,y,scale (study page pixels). Example: zoom.html#520,560,3 -->
+<iframe id="f" title="study"></iframe>
+<script>
+const parts = (location.hash.slice(1) || "0,0,2").split(",");
+const [x, y, s] = parts.map(Number);
+document.getElementById("f").src = "study.html" + (parts[3] ? `#${parts[3]}` : "");
+document.getElementById("f").style.transform = `scale(${s}) translate(${-x}px, ${-y}px)`;
+document.title = `zoom ${x},${y} x${s}`;
+</script>
+</body>
+</html>

@@ -1,0 +1,1082 @@
+[
+  {
+    "model_id": "gpt-oss-20b",
+    "task_id": "sample-math-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.141667,
+    "tokens_out": 64
+  },
+  {
+    "model_id": "gpt-oss-20b",
+    "task_id": "sample-math-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.006667,
+    "tokens_out": 55
+  },
+  {
+    "model_id": "gpt-oss-20b",
+    "task_id": "sample-math-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.0566659999999999,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "gpt-oss-20b",
+    "task_id": "sample-logic-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.095,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "gpt-oss-20b",
+    "task_id": "sample-logic-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.1116660000000003,
+    "tokens_out": 62
+  },
+  {
+    "model_id": "gpt-oss-20b",
+    "task_id": "sample-logic-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.355,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "gpt-oss-20b",
+    "task_id": "sample-code-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.218333,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "gpt-oss-20b",
+    "task_id": "sample-code-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.245,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "gpt-oss-20b",
+    "task_id": "sample-code-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.111666,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "gpt-oss-20b",
+    "task_id": "sample-science-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.1216660000000003,
+    "tokens_out": 62
+  },
+  {
+    "model_id": "gpt-oss-20b",
+    "task_id": "sample-science-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.08,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "gpt-oss-20b",
+    "task_id": "sample-science-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.213333,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "qwen38-27b-q4",
+    "task_id": "sample-math-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.0583330000000002,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "qwen38-27b-q4",
+    "task_id": "sample-math-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.073333,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "qwen38-27b-q4",
+    "task_id": "sample-math-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.2066660000000002,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "qwen38-27b-q4",
+    "task_id": "sample-logic-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.245,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "qwen38-27b-q4",
+    "task_id": "sample-logic-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.2116660000000001,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "qwen38-27b-q4",
+    "task_id": "sample-logic-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.205,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "qwen38-27b-q4",
+    "task_id": "sample-code-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.218333,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "qwen38-27b-q4",
+    "task_id": "sample-code-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.245,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "qwen38-27b-q4",
+    "task_id": "sample-code-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.111666,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "qwen38-27b-q4",
+    "task_id": "sample-science-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.155,
+    "tokens_out": 64
+  },
+  {
+    "model_id": "qwen38-27b-q4",
+    "task_id": "sample-science-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.1633339999999999,
+    "tokens_out": 64
+  },
+  {
+    "model_id": "qwen38-27b-q4",
+    "task_id": "sample-science-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.1133330000000001,
+    "tokens_out": 62
+  },
+  {
+    "model_id": "gemma4-26b-a4b",
+    "task_id": "sample-math-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 0.9916670000000001,
+    "tokens_out": 55
+  },
+  {
+    "model_id": "gemma4-26b-a4b",
+    "task_id": "sample-math-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.1233330000000001,
+    "tokens_out": 62
+  },
+  {
+    "model_id": "gemma4-26b-a4b",
+    "task_id": "sample-math-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.2066660000000002,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "gemma4-26b-a4b",
+    "task_id": "sample-logic-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.245,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "gemma4-26b-a4b",
+    "task_id": "sample-logic-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.061666,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "gemma4-26b-a4b",
+    "task_id": "sample-logic-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.138334,
+    "tokens_out": 55
+  },
+  {
+    "model_id": "gemma4-26b-a4b",
+    "task_id": "sample-code-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.001667,
+    "tokens_out": 55
+  },
+  {
+    "model_id": "gemma4-26b-a4b",
+    "task_id": "sample-code-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.145,
+    "tokens_out": 62
+  },
+  {
+    "model_id": "gemma4-26b-a4b",
+    "task_id": "sample-code-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.2616660000000002,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "gemma4-26b-a4b",
+    "task_id": "sample-science-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.005,
+    "tokens_out": 55
+  },
+  {
+    "model_id": "gemma4-26b-a4b",
+    "task_id": "sample-science-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.13,
+    "tokens_out": 62
+  },
+  {
+    "model_id": "gemma4-26b-a4b",
+    "task_id": "sample-science-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.213333,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "nemotron3-nano-30b",
+    "task_id": "sample-math-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.108333,
+    "tokens_out": 62
+  },
+  {
+    "model_id": "nemotron3-nano-30b",
+    "task_id": "sample-math-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.1233330000000001,
+    "tokens_out": 62
+  },
+  {
+    "model_id": "nemotron3-nano-30b",
+    "task_id": "sample-math-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.1066660000000001,
+    "tokens_out": 62
+  },
+  {
+    "model_id": "nemotron3-nano-30b",
+    "task_id": "sample-logic-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.028334,
+    "tokens_out": 55
+  },
+  {
+    "model_id": "nemotron3-nano-30b",
+    "task_id": "sample-logic-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 0.995,
+    "tokens_out": 55
+  },
+  {
+    "model_id": "nemotron3-nano-30b",
+    "task_id": "sample-logic-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.138334,
+    "tokens_out": 55
+  },
+  {
+    "model_id": "nemotron3-nano-30b",
+    "task_id": "sample-code-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.218333,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "nemotron3-nano-30b",
+    "task_id": "sample-code-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.245,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "nemotron3-nano-30b",
+    "task_id": "sample-code-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.2616660000000002,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "nemotron3-nano-30b",
+    "task_id": "sample-science-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.155,
+    "tokens_out": 64
+  },
+  {
+    "model_id": "nemotron3-nano-30b",
+    "task_id": "sample-science-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.1633339999999999,
+    "tokens_out": 64
+  },
+  {
+    "model_id": "nemotron3-nano-30b",
+    "task_id": "sample-science-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.1466669999999999,
+    "tokens_out": 64
+  },
+  {
+    "model_id": "ministral-mid",
+    "task_id": "sample-math-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.208333,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "ministral-mid",
+    "task_id": "sample-math-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.223333,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "ministral-mid",
+    "task_id": "sample-math-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.0566659999999999,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "ministral-mid",
+    "task_id": "sample-logic-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.095,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "ministral-mid",
+    "task_id": "sample-logic-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.061666,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "ministral-mid",
+    "task_id": "sample-logic-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.355,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "ministral-mid",
+    "task_id": "sample-code-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.068333,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "ministral-mid",
+    "task_id": "sample-code-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.095,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "ministral-mid",
+    "task_id": "sample-code-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.2616660000000002,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "ministral-mid",
+    "task_id": "sample-science-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.071666,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "ministral-mid",
+    "task_id": "sample-science-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.08,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "ministral-mid",
+    "task_id": "sample-science-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 0.9966670000000001,
+    "tokens_out": 55
+  },
+  {
+    "model_id": "phi-next-14b",
+    "task_id": "sample-math-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.0583330000000002,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "phi-next-14b",
+    "task_id": "sample-math-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.073333,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "phi-next-14b",
+    "task_id": "sample-math-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.2066660000000002,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "phi-next-14b",
+    "task_id": "sample-logic-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.028334,
+    "tokens_out": 55
+  },
+  {
+    "model_id": "phi-next-14b",
+    "task_id": "sample-logic-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.2116660000000001,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "phi-next-14b",
+    "task_id": "sample-logic-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.205,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "phi-next-14b",
+    "task_id": "sample-code-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.068333,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "phi-next-14b",
+    "task_id": "sample-code-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.145,
+    "tokens_out": 62
+  },
+  {
+    "model_id": "phi-next-14b",
+    "task_id": "sample-code-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.2616660000000002,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "phi-next-14b",
+    "task_id": "sample-science-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.2216660000000001,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "phi-next-14b",
+    "task_id": "sample-science-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.013334,
+    "tokens_out": 55
+  },
+  {
+    "model_id": "phi-next-14b",
+    "task_id": "sample-science-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.063333,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "granite-next-8b",
+    "task_id": "sample-math-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.208333,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "granite-next-8b",
+    "task_id": "sample-math-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.1233330000000001,
+    "tokens_out": 62
+  },
+  {
+    "model_id": "granite-next-8b",
+    "task_id": "sample-math-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.2066660000000002,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "granite-next-8b",
+    "task_id": "sample-logic-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.095,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "granite-next-8b",
+    "task_id": "sample-logic-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.145,
+    "tokens_out": 64
+  },
+  {
+    "model_id": "granite-next-8b",
+    "task_id": "sample-logic-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.205,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "granite-next-8b",
+    "task_id": "sample-code-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.118333,
+    "tokens_out": 62
+  },
+  {
+    "model_id": "granite-next-8b",
+    "task_id": "sample-code-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.245,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "granite-next-8b",
+    "task_id": "sample-code-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.111666,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "granite-next-8b",
+    "task_id": "sample-science-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.071666,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "granite-next-8b",
+    "task_id": "sample-science-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.1633339999999999,
+    "tokens_out": 64
+  },
+  {
+    "model_id": "granite-next-8b",
+    "task_id": "sample-science-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.063333,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "glm-small",
+    "task_id": "sample-math-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.141667,
+    "tokens_out": 64
+  },
+  {
+    "model_id": "glm-small",
+    "task_id": "sample-math-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.073333,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "glm-small",
+    "task_id": "sample-math-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.2066660000000002,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "glm-small",
+    "task_id": "sample-logic-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.245,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "glm-small",
+    "task_id": "sample-logic-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.061666,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "glm-small",
+    "task_id": "sample-logic-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.138334,
+    "tokens_out": 55
+  },
+  {
+    "model_id": "glm-small",
+    "task_id": "sample-code-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.068333,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "glm-small",
+    "task_id": "sample-code-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.245,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "glm-small",
+    "task_id": "sample-code-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.111666,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "glm-small",
+    "task_id": "sample-science-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.071666,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "glm-small",
+    "task_id": "sample-science-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.23,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "glm-small",
+    "task_id": "sample-science-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.1133330000000001,
+    "tokens_out": 62
+  },
+  {
+    "model_id": "qwen3-coder-next",
+    "task_id": "sample-math-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.0583330000000002,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "qwen3-coder-next",
+    "task_id": "sample-math-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 1.223333,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "qwen3-coder-next",
+    "task_id": "sample-math-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "math",
+    "latency_s": 0.99,
+    "tokens_out": 55
+  },
+  {
+    "model_id": "qwen3-coder-next",
+    "task_id": "sample-logic-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.1783339999999998,
+    "tokens_out": 64
+  },
+  {
+    "model_id": "qwen3-coder-next",
+    "task_id": "sample-logic-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.061666,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "qwen3-coder-next",
+    "task_id": "sample-logic-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "logic",
+    "latency_s": 1.205,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "qwen3-coder-next",
+    "task_id": "sample-code-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.068333,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "qwen3-coder-next",
+    "task_id": "sample-code-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.245,
+    "tokens_out": 68
+  },
+  {
+    "model_id": "qwen3-coder-next",
+    "task_id": "sample-code-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "code",
+    "latency_s": 1.045,
+    "tokens_out": 55
+  },
+  {
+    "model_id": "qwen3-coder-next",
+    "task_id": "sample-science-02",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.071666,
+    "tokens_out": 59
+  },
+  {
+    "model_id": "qwen3-coder-next",
+    "task_id": "sample-science-04",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.1633339999999999,
+    "tokens_out": 64
+  },
+  {
+    "model_id": "qwen3-coder-next",
+    "task_id": "sample-science-06",
+    "correct": false,
+    "score": null,
+    "answer": "",
+    "category": "science",
+    "latency_s": 1.213333,
+    "tokens_out": 68
+  }
+]

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.looks/
+.vite/
+.vite-*/
+test-results/
+playwright-report/
+*.log
+.DS_Store
+release/

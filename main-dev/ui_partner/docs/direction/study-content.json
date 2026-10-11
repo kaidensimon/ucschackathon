@@ -1,0 +1,341 @@
+{
+ "note": "Shared content and geometry for the three look studies. Same words, same seats, same sizes in every study, so only the look differs. Sample data: invented question, files and answer.",
+ "window": {
+  "width": 1440,
+  "height": 830
+ },
+ "frame": {
+  "topBarHeight": 48,
+  "sidebarWidth": 240,
+  "sidebarItems": [
+   "New chat",
+   "History",
+   "Library",
+   "Models",
+   "Settings"
+  ],
+  "sidebarFooter": [
+   "Theme",
+   "Shortcuts",
+   "Sample data. Invented files and answers."
+  ],
+  "topBarLeft": "see each panel's topBarLeft",
+  "messageBoxPlaceholder": "Add a note for the next round"
+ },
+ "stage": {
+  "width": 1040,
+  "height": 558,
+  "centreX": 520.0,
+  "flatEdgeY": 520,
+  "note": "Half-circle table, flat side down at flatEdgeY. Figures upright. A seat's point is the middle of its body's flat bottom. Table radius = ring radius - 0.7 x head - 8, so no body touches the table. Footer under the stage: Pause and Stop at left, Table / Chat switch at right."
+ },
+ "figure": {
+  "head": "full circle, diameter D, holds the short name",
+  "body": "half circle, 1.4 D wide and 0.7 D tall, 2 px under the head"
+ },
+ "layouts": {
+  "five": {
+   "headDiameter": 72,
+   "ringRadius": 263,
+   "tableRadius": 204,
+   "bubbleMaxWidth": 280,
+   "seats": [
+    {
+     "seat": 1,
+     "name": "Phi",
+     "x": 269.9,
+     "bodyBottomY": 438.7,
+     "angleDeg": 18.0
+    },
+    {
+     "seat": 2,
+     "name": "Llama",
+     "x": 365.4,
+     "bodyBottomY": 307.2,
+     "angleDeg": 54.0
+    },
+    {
+     "seat": 3,
+     "name": "Qwen",
+     "x": 520.0,
+     "bodyBottomY": 257.0,
+     "angleDeg": 90.0
+    },
+    {
+     "seat": 4,
+     "name": "Gemma",
+     "x": 674.6,
+     "bodyBottomY": 307.2,
+     "angleDeg": 126.0
+    },
+    {
+     "seat": 5,
+     "name": "Mistral",
+     "x": 770.1,
+     "bodyBottomY": 438.7,
+     "angleDeg": 162.0
+    }
+   ]
+  },
+  "seven": {
+   "headDiameter": 64,
+   "ringRadius": 277,
+   "tableRadius": 224,
+   "bubbleMaxWidth": 240,
+   "seats": [
+    {
+     "seat": 1,
+     "name": "Phi",
+     "x": 249.9,
+     "bodyBottomY": 458.4,
+     "angleDeg": 12.9
+    },
+    {
+     "seat": 2,
+     "name": "Llama",
+     "x": 303.4,
+     "bodyBottomY": 347.3,
+     "angleDeg": 38.6
+    },
+    {
+     "seat": 3,
+     "name": "Granite",
+     "x": 399.8,
+     "bodyBottomY": 270.4,
+     "angleDeg": 64.3
+    },
+    {
+     "seat": 4,
+     "name": "Qwen",
+     "x": 520.0,
+     "bodyBottomY": 243.0,
+     "angleDeg": 90.0
+    },
+    {
+     "seat": 5,
+     "name": "Gemma",
+     "x": 640.2,
+     "bodyBottomY": 270.4,
+     "angleDeg": 115.7
+    },
+    {
+     "seat": 6,
+     "name": "Hermes",
+     "x": 736.6,
+     "bodyBottomY": 347.3,
+     "angleDeg": 141.4
+    },
+    {
+     "seat": 7,
+     "name": "Mistral",
+     "x": 790.1,
+     "bodyBottomY": 458.4,
+     "angleDeg": 167.1
+    }
+   ]
+  }
+ },
+ "bubble": {
+  "lines": 2,
+  "gapAboveHead": 12,
+  "rule": "Above its own seat. Never overlaps another bubble or a figure. End seats push outward. If it would touch a neighbour it rises above it."
+ },
+ "question": {
+  "text": "Can I end my apartment lease early, and what would it cost me?",
+  "files": [
+   {
+    "name": "Lease 2025.pdf",
+    "pages": 14
+   },
+   {
+    "name": "Renewal letter 2026.pdf",
+    "pages": 2
+   },
+   {
+    "name": "House rules.docx",
+    "pages": 6
+   }
+  ],
+  "limit": "5:00"
+ },
+ "panels": [
+  {
+   "id": "p1-one-speaker",
+   "title": "Mid-debate, one speaker",
+   "layout": "five",
+   "statusPill": "Round 2, 3:10 left, 2 of 5 agree",
+   "tableCentre": {
+    "round": "Round 2",
+    "timeLeft": "3:10 left",
+    "meter": {
+     "agree": 2,
+     "seats": 5,
+     "needed": 4
+    },
+    "caption": "2 of 5 agree, needs 4"
+   },
+   "speaking": [
+    "Qwen"
+   ],
+   "voteMarks": null,
+   "bubbles": [
+    {
+     "seat": "Qwen",
+     "text": "Tells Mistral the fee is one month at the new rent.",
+     "strength": 1
+    },
+    {
+     "seat": "Gemma",
+     "text": "Cites the renewal letter, page 1: fee is one month.",
+     "strength": 1
+    },
+    {
+     "seat": "Llama",
+     "text": "Holds that a letter cannot change the lease.",
+     "strength": 0.5
+    }
+   ],
+   "queuedNote": null,
+   "topBarLeft": "Council of 5"
+  },
+  {
+   "id": "p2-all-speaking",
+   "title": "All five speaking at once (stress case; shown because the engine has not decided)",
+   "layout": "five",
+   "statusPill": "Round 2, 3:10 left, 2 of 5 agree",
+   "tableCentre": {
+    "round": "Round 2",
+    "timeLeft": "3:10 left",
+    "meter": {
+     "agree": 2,
+     "seats": 5,
+     "needed": 4
+    },
+    "caption": "2 of 5 agree, needs 4"
+   },
+   "speaking": [
+    "Phi",
+    "Llama",
+    "Qwen",
+    "Gemma",
+    "Mistral"
+   ],
+   "voteMarks": null,
+   "bubbles": [
+    {
+     "seat": "Phi",
+     "text": "Says the landlord never signed the letter.",
+     "strength": 1
+    },
+    {
+     "seat": "Llama",
+     "text": "Holds that a letter cannot change the lease.",
+     "strength": 1
+    },
+    {
+     "seat": "Qwen",
+     "text": "Tells Mistral the fee is one month at the new rent.",
+     "strength": 1
+    },
+    {
+     "seat": "Gemma",
+     "text": "Cites the renewal letter, page 1: fee is one month.",
+     "strength": 1
+    },
+    {
+     "seat": "Mistral",
+     "text": "Now agrees: one month, not two.",
+     "strength": 1
+    }
+   ],
+   "topBarLeft": "Council of 5"
+  },
+  {
+   "id": "p3-seven-after-vote",
+   "title": "Seven seats, just after the round 1 vote",
+   "layout": "seven",
+   "statusPill": "Round 1 vote, 4 of 7 agree",
+   "tableCentre": {
+    "round": "Round 1 vote",
+    "timeLeft": "3:36 left",
+    "meter": {
+     "agree": 4,
+     "seats": 7,
+     "needed": 6
+    },
+    "caption": "4 of 7 agree, needs 6"
+   },
+   "speaking": [],
+   "voteMarks": {
+    "Phi": "cross",
+    "Llama": "cross",
+    "Granite": "check",
+    "Qwen": "check",
+    "Gemma": "check",
+    "Hermes": "cross",
+    "Mistral": "check"
+   },
+   "bubbles": [
+    {
+     "seat": "Hermes",
+     "text": "Asks which rent the fee is based on.",
+     "strength": 0.5
+    }
+   ],
+   "topBarLeft": "Council of 7"
+  },
+  {
+   "id": "p4-released",
+   "title": "The released answer in chat",
+   "layout": null,
+   "statusPill": "Agreed, 4 of 5",
+   "foldedCard": {
+    "heading": "Agreed 4 of 5",
+    "meta": "3 rounds, 3:40",
+    "seatMarks": {
+     "Phi": "cross",
+     "Llama": "check",
+     "Qwen": "check",
+     "Gemma": "check",
+     "Mistral": "check"
+    },
+    "button": "See the debate"
+   },
+   "answer": {
+    "paragraphs": [
+     "Yes. You can end the lease early by giving 60 days' written notice and paying one month's rent at the new rate, $2,520.",
+     "To be out by the end of February, send the notice by 30 December 2026. An email counts as written notice."
+    ],
+    "citations": [
+     {
+      "file": "Renewal letter 2026.pdf",
+      "page": 1
+     },
+     {
+      "file": "Lease 2025.pdf",
+      "page": 9
+     },
+     {
+      "file": "House rules.docx",
+      "page": 4
+     }
+    ],
+    "filesCitedLabel": "Files cited",
+    "dissent": "Phi disagreed: the renewal letter has one signature (page 2), so the old terms may still apply."
+   },
+   "messageBoxPlaceholder": "Message the council",
+   "topBarLeft": "Council of 5"
+  }
+ ],
+ "wording": {
+  "note": "Each direction keeps its own wording rules (see its direction.md) but these facts and numbers do not change.",
+  "switch": [
+   "Table",
+   "Chat"
+  ],
+  "stageButtons": [
+   "Pause",
+   "Stop"
+  ]
+ }
+}

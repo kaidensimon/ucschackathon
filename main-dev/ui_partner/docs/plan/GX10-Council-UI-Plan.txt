@@ -1,0 +1,488 @@
+
+
+===== PAGE 1 =====
+GX10 Council UI Plan
+Oct 10, 2026 · @Lucas Ta
+Goals
+The app is a council of local AI models on the GX10 that debate your question and release
+one agreed answer. They research only your own files, and the answer goes out when 80%
+agree or the time limit runs out. Everything runs on the GX10, so nothing leaves your
+network except model downloads.
+A plain chat box: ask the council anything and get one answer back, with the vote and
+the files it used.
+Watch the debate your way: while the council works, a small switch at the bottom right
+flips between Table View and Chat View.
+Table View: the models sit around a half-circle table, with a one- or two-sentence
+summary above whoever is talking that fades out after a few seconds.
+Chat View: the full messages the models send each other, in black and white.
+Learns carefully: a council.md file of lessons and your preferences, where every entry
+has passed a council vote.
+Calm and readable: warm low-contrast palette, generous spacing, smooth fades, light
+and dark themes.
+Design direction
+The look is warm paper, soft clay accents and a friendly sans-serif interface with soft serif
+titles, so it reads as calm and editorial rather than like a control panel.
+Typography
+Quiche Sans is a paid font byAdam Ladd, sold through Fontspring and Creative Market
+and included with Adobe Fonts, so there are no open-source files for it. It is classed as a
+display sans, which suits titles better than long chat text. The plan therefore uses an open
+stack, all under the SIL Open Font License and free to self-host: a soft high-contrast serif
+for titles, a warm humanist sans for everything you read, and a monospace for numbers.
+GX10 Cluster UI Plan
+Page 1 of 16
+
+===== PAGE 2 =====
+Fontsource packages bundle the web font files, so the interface loads them from the
+gateway with no internet. If you still prefer Quiche Sans, license it for self-hosted web use
+and keep it to titles.
+Color
+Body text on the background stays above 4.5:1 contrast. Each seat at the table gets a
+muted color, spaced apart in hue, and the model's name sits inside its head, so color is
+never the only signal. Chat View uses no color at all.
+Role Font Size / weight License
+Page and panel
+titles
+Fraunces 24 px / 600 SIL OFL 1.1,
+variable
+Chat text and
+answers
+Source Sans 3 16 px / 400, line height
+1.6
+SIL OFL 1.1,
+variable
+Table View
+bubbles
+Source Sans 3 13 px / 400, two lines at
+most
+SIL OFL 1.1,
+variable
+Model names in
+heads
+Source Sans 3 11 px / 600, short name,
+full name on hover
+SIL OFL 1.1,
+variable
+Chat View
+messages
+Source Sans 3 15 px / 400 SIL OFL 1.1,
+variable
+UI labels and
+buttons
+Source Sans 3 14 px / 500 SIL OFL 1.1,
+variable
+Small meta
+(times, rounds)
+Source Sans 3 12 px / 400, muted SIL OFL 1.1,
+variable
+Timer, votes,
+counts
+JetBrains Mono 13 px / 400, tabular
+figures
+SIL OFL 1.1
+Swaps to try for
+the sans
+DM Sans, Inter or Work Sans SIL OFL 1.1
+Fallback stack The chosen font, then a
+system humanist sans, then
+system-ui
+GX10 Cluster UI Plan
+Page 2 of 16
+
+===== PAGE 3 =====
+Feel and spacing
+8 px spacing grid; 12 px radius on cards, 8 px on inputs and buttons.
+Hairline borders and very soft shadows instead of heavy boxes.
+Motion is 150 to 200 ms ease-out for controls. Bubbles fade in over 250 ms and fade out
+slowly over about 1.5 s, and everything honors reduced-motion settings.
+Keyboard first: visible focus rings, full tab order, shortcuts listed in a help sheet.
+Token Light Dark Used for
+Background #F5F1EA #1F1E1B App background
+Surface #FBF9F5 #2A2825 Cards, bubbles, message box
+Border #E4DDD0 #3A3732 Dividers, outlines, the table edge
+Text #2B2A27 #ECE7DD Primary text
+Muted text #6F6A5F #A39D90 Meta, placeholders
+Accent (clay) #C4694D #D9826A Send button, focus ring, the
+speaking glow, the active switch
+Seat 1 (sage) #6E9A7E #86B497 First seat
+Seat 2 (slate) #5F82A6 #7C9DBF Second seat
+Seat 3
+(amber)
+#C9993F #DDB25A Third seat
+Seat 4 (plum) #8E6C9A #A98AB5 Fourth seat
+Seat 5 (teal) #4F9493 #6DB0AE Fifth seat
+Seat 6 (rose) #B8707A #CF8D96 Sixth seat
+Seat 7 (olive) #8A8F4E #A6AB69 Seventh seat
+Chat View #111111 on
+#FFFFFF
+#F2F2F2 on
+#0E0E0E
+Black and white only, grays for
+names and times
+Agreed #5E8C6A #7FAE8B Agreement meter once 80% is
+reached
+Error #B5483E #D4685D A model that failed to load or answer
+GX10 Cluster UI Plan
+Page 3 of 16
+
+===== PAGE 4 =====
+Layout and navigation
+The screen has two columns under a slim top bar. The sidebar holds New chat, History,
+Library, Models and Settings, and the conversation fills the rest.
+When the council starts working, the conversation opens a stage for the debate and a
+small Table / Chat switch appears at the bottom right. When the council agrees, the stage
+folds into a card above the answer, and clicking the card replays the debate. The top bar
+shows the seated council and a status pill with the round, time left and agreement.
+How a debate runs
+A debate goes from your question to one agreed answer in five steps, and ends when 80%
+of the seats agree or the time limit runs out.
+1. Ask. Type your question and attach any files. The last council you used is seated by
+default. The seat picker swaps in any 3 to 7 models or a saved council and sets the time
+limit.
+2. Spool up. The models load on the GX10. Each seat fades in at the table as its model
+becomes ready, and the Table / Chat switch appears.
+main screen wireframe · council stage with the Table / Chat switch at the bottom right
+GX10 Cluster UI Plan
+Page 4 of 16
+
+===== PAGE 5 =====
+3. Research. Each agent searches your Library and the chat's attachments, reads the
+passages it needs and cites them by file and page. There is no web search, so nothing
+leaves your network.
+4. Debate in rounds. Agents state a position, answer each other by name and revise. At
+the end of each round, every agent states its current answer in one sentence, and the
+engine checks which answers match.
+5. Agree and release. Once 80% of seats back the same answer, one agent from that
+group writes the final answer in one voice, citing your files. Agents who disagreed each
+add a one-line note.
+80% rounds up, so a council of three or four has to agree unanimously:
+Time limit. You set it when you ask, with 5 minutes as the starting default and presets of 2,
+5 and 10. If time runs out before 80% agree, the council releases the answer with the most
+support, marked No consensus, with the vote split and each dissent.
+Stepping in. The message box stays live during a debate, and what you type reaches the
+council at the start of the next round. Pause holds the debate and the timer; Stop ends it
+and releases the best answer so far.
+The answer. It lands in the chat like any reply, headed with the vote, such as Agreed 4 of 5,
+plus the rounds and time taken. It lists the files it cited and links to a replay of the debate.
+Table View
+Table View seats the council around a half-circle table facing you, with a short summary
+above whoever is talking.
+Seats Needed to agree
+3 3 (all)
+4 4 (all)
+5 4
+6 5
+7 6
+GX10 Cluster UI Plan
+Page 5 of 16
+
+===== PAGE 6 =====
+The table. A half-circle with its flat side toward you; the agents sit along the curved
+outer edge, spaced evenly for 3 to 7 seats. The middle shows the round, the time left
+and an agreement meter, such as 3 of 5 agree, needs 4.
+The agents. Each is a half-circle body under a full-circle head with the model's short
+name inside, in its seat color. The agent who is talking gets a soft clay glow, and after
+each vote a small check or cross sits on every head until the next round.
+The bubbles. Above each agent, a one- or two-sentence summary of what it is saying,
+updated as it thinks. A small fast model on the GX10 writes these lines from each
+agent's text every few seconds.
+No overlap. Each seat owns the space above it. Bubbles are no wider than the gap
+between seats, the end seats push theirs outward, and a bubble that would touch a
+neighbor's rises above it. Text stops at two lines.
+Fading. A bubble fades in over 250 ms, stays about 8 seconds, then fades out slowly
+over about 1.5 seconds. A new summary from the same agent crossfades in place, and
+with reduced motion on, bubbles simply appear and disappear.
+Clicking an agent opens a side sheet with everything it has said and cited in this
+debate.
+Table View wireframe · five seats, the speaker glowing, one bubble fading out
+GX10 Cluster UI Plan
+Page 6 of 16
+
+===== PAGE 7 =====
+Chat View
+Chat View shows the full messages the models send each other, in black and white, with
+the same fonts as the rest of the app.
+Messages. Each one shows the sender, who it is addressed to (all, or one model by
+name), the time into the debate and any file citations as small outlined chips.
+Rounds and votes. Each vote appears as a thin divider across the thread, such as
+Round 1 vote · 2 of 5 agree.
+Black and white only. Near-black text on white, or the reverse in dark mode, with grays
+for names and times. Models are told apart by name, never by color.
+Fits the screen. On a wide screen the thread splits into one column per model, and on
+a narrow one it stays a single thread. A filter shows one model's messages, and the
+view follows the newest message until you scroll up.
+Models
+The Models screen is where you download models and choose who sits at the table, with
+a memory meter for the GX10.
+Chat View wireframe · one thread, a vote divider and citation chips, in black and white
+GX10 Cluster UI Plan
+Page 7 of 16
+
+===== PAGE 8 =====
+Model library. Search Hugging Face for GGUF files, download with pause and resume,
+and see each model's size. Downloading is the only time the app goes online.
+Seat picker. Choose 3 to 7 models for a debate, or save a named council to reuse. The
+same model can fill two seats with different roles when memory is tight.
+Memory fit. Every seated model shares the GX10's 128 GB of unified memory, along
+with the memory each one's context needs. The meter shows whether a council fits
+before you start and suggests smaller versions or fewer seats when it does not. More
+seats also share the GX10's processing power, so each turn takes longer.
+Keeping them loaded. Each seated model runs in its own llama-server, so all of them
+stay in memory for the whole debate. llama.cpp's newer router mode can manage
+several models from one server, but published notes conflict on whether they all stay
+loaded at once, so it needs a test on the GX10 first.
+Learning: council.md
+The council keeps a council.md file of lessons and your preferences. Nothing goes into it
+until the council has debated the entry and 80% agree it is worth keeping. Unlike agents
+that save whatever they notice, every entry has a reason, evidence and a vote behind it.
+learning flow · signals, a drafted candidate, the council review vote and council.md
+GX10 Cluster UI Plan
+Page 8 of 16
+
+===== PAGE 9 =====
+What it holds. Two sections: Lessons, which are mistakes not to repeat, and Your
+preferences, which are how you like answers. Each entry is one rule with its scope (a
+topic, a kind of question or one model), the evidence, the vote and the date.
+Where candidates come from. Your corrections, failed checks such as a citation that
+does not support its claim, and a dissent that later proves right. Preferences you state
+or show more than once count too. Each answer has thumbs up and down, a This was
+wrong box and a Remember this option; none writes to the file directly.
+The review. After an answer is released, a clerk drafts each candidate as one rule with
+its evidence. The council then debates four questions: is it true, will it matter again,
+does it clash with an entry, and is it too broad? 80% must agree, the same bar as
+answers.
+Three outcomes. Accepted entries go into council.md with their evidence. A candidate
+that needs more evidence waits until the same thing happens again. A rejected one is
+logged with the reason and is not proposed again without new evidence.
+Your explicit preferences. When you say to remember something, the council checks
+the wording and any conflict with existing entries, but it cannot veto you.
+Staying small. Every seat reads council.md at the start of each debate, so it has a
+budget of about 2,000 tokens to start. When it fills, the council proposes merges and
+retirements through the same review, starting with entries never used or later
+contradicted.
+You stay in charge. A Council file screen shows every entry with its evidence and vote,
+plus the waiting and rejected lists. You can edit, pin or retire any entry, and every
+change is versioned with its reason so it can be rolled back.
+Seeing it work. In Chat View, an agent that applies an entry cites it as a chip, such as
+council.md L7. In Table View, a review shows as a small card in the middle of the table
+with its vote.
+An entry looks like this (example entries):
+GX10 Cluster UI Plan
+Page 9 of 16
+
+===== PAGE 10 =====
+# council.md
+## Lessons
+- **L7** Check a file's date before citing it as current.
+Applies to: questions about the latest figures.
+Evidence: debate 14, you corrected an outdated number.
+Vote: 5 of 5 · used 3 times
+## Your preferences
+- **P3** Lead with the answer, then the reasoning.
+Applies to: every answer.
+Evidence: you asked for this in debates 8 and 15.
+Vote: 4 of 5
+## Retired
+- **L2** Retired: replaced by L9.
+Chat and history
+Chat. The conversation looks like any chat, with Markdown, code blocks and a message
+box that sends on Enter. While the council works, a stage opens above the message box
+and the Table / Chat switch appears at the bottom right. Each answer shows the vote, the
+rounds, the time taken and the files it cited.
+History. A searchable list of past chats, grouped by Today, Yesterday and Earlier, that you
+can rename, pin, delete and export. Every debate is saved with each message, summary
+and vote, so you can replay it later in Table View or Chat View. History lives on the GX10.
+Documents and downloads
+The council does its research only in your files, which you give it in two ways and which
+never leave your network.
+Attach to a chat. Drag files into the message box or use the paperclip. The first version
+reads PDF, Word, plain text, Markdown, spreadsheets and code, with OCR for scans and
+images. Each file shows as a chip with its page count, and every agent can search it during
+the debate.
+GX10 Cluster UI Plan
+Page 10 of 16
+
+===== PAGE 11 =====
+Library. A Library screen holds files you want the council to use again. Drag them in, save
+an attachment to it, or let the small Mac app watch a folder such as Downloads. New files
+from a watched folder wait in an inbox for one click, and the council searches the Library
+only when a chat allows it.
+How agents read files. Several models share the GX10's memory, so each has a smaller
+context than one model alone would. Agents therefore search for the relevant passages
+by default, and only short files go in whole. Every answer and every Chat View message
+cites the file and page it drew on.
+Extras worth adding
+Saved councils and replay matter most; the rest can wait.
+Piece What it does
+Extraction Pulls text from PDF, Word, text, spreadsheets and
+code, with OCR for scans and images
+Search index Splits files into passages and indexes them on the
+GX10
+Embeddings A small embedding model on the GX10, separate
+from the council's models
+Research tool Lets each agent search the index and read
+passages during the debate
+Citations Every message and answer links to the file and
+page it used
+Watched folders The optional Mac app watches folders and uploads
+new files to the GX10
+Privacy Files and the index stay on the GX10, and nothing is
+sent out
+Feature Why it helps Phase
+Saved councils Name a set of models and reuse it in one click 3
+GX10 Cluster UI Plan
+Page 11 of 16
+
+===== PAGE 12 =====
+Tech stack
+The whole app runs on the GX10, and you open it in a browser on any of your Macs. A thin
+gateway keeps the interface separate from llama.cpp, so models and the runtime can
+change without touching the UI.
+Feature Why it helps Phase
+Roles per seat Give a seat a stance, such as skeptic or fact￾checker, with a short prompt
+4
+Time limit presets 2, 5 or 10 minutes, or your own 4
+Replay Scrub through a finished debate in Table View or
+Chat View
+7
+Agreement history See how often each model ends up in the majority 7
+Debate export A debate as Markdown or JSON, with every
+message, vote and citation
+7
+Health alerts A quiet toast when the GX10 runs short of memory
+or a model fails
+7
+Command palette (Cmd+K) Jump to any chat, debate or setting from the
+keyboard
+7
+Phone layout Watch a debate from your phone on your network 7
+GX10 Cluster UI Plan
+Page 12 of 16
+
+===== PAGE 13 =====
+Debate events stream to the browser over one WebSocket: each agent's text, the bubble
+summaries, votes and the timer. The debate engine calls the models through llama-server
+and searches your files through the gateway.
+system architecture · browser, gateway, debate engine and models on the GX10
+Layer Pick Why
+Web UI React, TypeScript, Vite, served by
+the GX10
+Opens in any browser on your
+network
+Mac app
+(optional)
+Tauri wrapper around the same UI Adds watched folders such as
+Downloads, which a browser
+cannot do
+Styling Tailwind driven by the color and
+type tokens above, Radix
+primitives
+Accessible components and light
+and dark themes
+Animation Motion (formerly Framer Motion) Smooth fades and enter and exit
+transitions for bubbles and seats
+Table View SVG table and avatars, HTML
+bubbles placed by a small layout
+pass
+Measures each bubble and moves
+it so none overlap
+GX10 Cluster UI Plan
+Page 13 of 16
+
+===== PAGE 14 =====
+Build phases and open questions
+Chat and documents come first so there is something usable early. The debate engine
+follows, and Table View comes after Chat View because it is built on the same events.
+1. Design system and static mocks. Fonts, color and seat tokens, light and dark themes,
+and mocks of the chat, Table View and Chat View. Done when the mocks look right to
+you.
+2. Chat, History and documents on one model. Streaming replies, searchable history,
+attachments, the Library and the search index.
+Layer Pick Why
+Gateway FastAPI (Python) on the GX10 One front door for chat, history,
+files and live debate events
+Debate engine LangGraph Runs seats, rounds, votes, the 80%
+check and the time limit as a graph
+Learning
+review
+A LangGraph subgraph that runs
+after each answer
+Drafts candidates, runs the review
+vote and writes accepted entries
+Learning file council.md in a git repository on
+the GX10
+Every change is a commit with its
+reason, so any entry can be rolled
+back
+Inference llama.cpp, one llama-server per
+seated model
+Keeps every model loaded for the
+whole debate
+Summaries A small fast model on the GX10 Writes the one- or two-sentence
+bubble lines
+Search SQLite full-text search plus a small
+embedding model
+Finds the relevant passages in your
+files
+Live events WebSocket Carries every agent's text,
+summaries, votes and the timer
+Storage SQLite on the GX10 Chats, debates with every
+message and vote, files, settings
+and the candidate log
+Access Your network only, no login Just you; nothing is exposed
+outside
+GX10 Cluster UI Plan
+Page 14 of 16
+
+===== PAGE 15 =====
+3. Models and seats. Model downloads, the memory meter, the seat picker and saved
+councils, with one llama-server per seated model.
+4. Debate engine and Chat View. Rounds, the 80% check, the time limit, the final answer
+with citations, Stop and Pause, roles per seat and time limit presets, shown first in Chat
+View.
+5. Table View. The half-circle table, avatars, bubbles with the no-overlap layout and slow
+fades, the agreement meter and the timer.
+6. Learning. council.md, feedback on each answer, the clerk and review step, the waiting
+and rejected lists, and the Council file screen with version history. Done when a
+corrected mistake stays fixed in later debates.
+7. Replay and extras. Replay, agreement history, export, alerts, the command palette and
+the phone layout.
+Open questions
+Decided so far:
+The council runs on the GX10 alone; the laptop cluster plan is dropped, and your Macs
+only open the app.
+3 to 7 seats per debate, chosen when you ask.
+The council agrees when 80% of seats back the same answer, within a time limit.
+Research uses only your files, attachments and the Library, never the web.
+A council.md file learns lessons and your preferences, and an entry gets in only after a
+council vote.
+Table View and Chat View, switched by a small box at the bottom right while the
+council works.
+Open fonts: Fraunces, Source Sans 3 and JetBrains Mono. Light and dark themes from
+the first version.
+Just you using it, locally, so no accounts or login.
+Still open:
+If time runs out before 80% agree, should the council release its best-supported
+answer marked No consensus, as this plan assumes, or keep going?
+What should the default time limit be? The plan assumes 5 minutes.
+Does "based on resolution" for Chat View mean it adapts to screen size, one column
+per model on a wide screen and one thread on a narrow one?
+GX10 Cluster UI Plan
+Page 15 of 16
+
+===== PAGE 16 =====
+Sources
+Quiche Sans on Fontspring
+Free high-contrast font alternatives
+Free humanist sans alternatives
+JetBrains Mono on Fontsource
+ASUS Ascent GX10 specifications
+llama-server router mode notes
+Hugging Face Hub downloads with resume
+Should the bubble lines come from a separate small model, as planned, or from each
+agent summarizing itself?
+Should an accepted lesson wait for your OK, or go straight in with an undo notice? The
+plan assumes the undo notice.
+Can the council turn down a preference you state directly? The plan assumes it can
+only check the wording and conflicts.
+GX10 Cluster UI Plan
+Page 16 of 16

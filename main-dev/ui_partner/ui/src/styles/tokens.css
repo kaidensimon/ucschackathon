@@ -1,0 +1,110 @@
+/* Look C, "Cut-Out Council" (picked by Lucas on 2026-10-10).
+   The single source of every colour, corner and timing in the app. Nothing else names a colour.
+   Source of the values: docs/design/chosen-study/tokens.json. Every pair that carries meaning
+   is checked by src/styles/contrast.test.ts. */
+:root {
+  /* paper and ink */
+  --page: #ffffff;
+  --surface: #ffffff;
+  --hover: #e6e9e3;
+  --hairline: #d3d8d1; /* decoration only: never the only sign of anything */
+  --line: #77827b; /* every edge that means something */
+  --ink: #17201c; /* text */
+  --muted: #535e58;
+  --accent: #1d2a24; /* controls: buttons, the active side of a switch, focus, vote marks */
+  --accent-hover: #2c3b33;
+  --on-accent: #ffffff;
+  --table: #dee5dd; /* the table's cloth, and nothing else */
+  --agreed: #1a6b42;
+  --error: #a32a1c;
+  /* the council: the only hues in the app. A seat's colour belongs to its place at the table. */
+  --seat-1: #005960;
+  --seat-2: #23246e;
+  --seat-3: #8c6205;
+  --seat-4: #641530;
+  --seat-5: #656b78;
+  --seat-6: #8a2c06;
+  --seat-7: #6c379b;
+  --on-seat: #ffffff; /* the name and the cut: the page showing through */
+  /* a logo that is a picture (a face) is drawn dark on a pale plate in every theme, never as a negative */
+  --plate: #ffffff;
+  --on-plate: #17201c;
+  /* Chat View: black, white and grey only, on its own solid sheet */
+  --cv-paper: #ffffff;
+  --cv-ink: #111111;
+  --cv-grey: #5e5e5e;
+  --cv-rule: #767676;
+  --cv-faint: #e3e3e3;
+
+  /* three corner sizes, and round */
+  --radius-control: 8px;
+  --radius-card: 14px;
+  /* motion: controls 150-200 ms; nothing loops */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --quick: 160ms;
+}
+
+:root[data-theme="dark"] {
+  --page: #151b18;
+  --surface: #1c2420;
+  --hover: #242d28;
+  --hairline: #2d3832;
+  --line: #74817a;
+  --ink: #e6ebe7;
+  --muted: #9ca9a2;
+  --accent: #e6ebe7;
+  --accent-hover: #ffffff;
+  --on-accent: #151b18;
+  --table: #213029;
+  --agreed: #74c998;
+  --error: #f0897a;
+  --seat-1: #a1e8e5;
+  --seat-2: #789aff;
+  --seat-3: #fad786;
+  --seat-4: #de6365;
+  --seat-5: #abb6b5;
+  --seat-6: #f49a5b;
+  --seat-7: #9d85b2;
+  --on-seat: #151b18;
+  --plate: #e6ebe7;
+  --on-plate: #151b18;
+  --cv-paper: #0e0e0e;
+  --cv-ink: #f2f2f2;
+  --cv-grey: #a6a6a6;
+  --cv-rule: #8a8a8a;
+  --cv-faint: #2a2a2a;
+}
+
+/* Warm (asked for by Lucas on 2026-10-11): the same look on cream paper, with brown ink and a
+   linen table. The council keeps its hues, a shade warmer; names are the paper showing through.
+   Chat View stays a plain white sheet: black, white and grey only. */
+:root[data-theme="warm"] {
+  --page: #f6eee1;
+  --surface: #fcf8f0;
+  --hover: #ece0cd;
+  --hairline: #e0d3bd;
+  --line: #8b7861;
+  --ink: #2b1f16;
+  --muted: #66564a;
+  --accent: #3b2a1d;
+  --accent-hover: #52392a;
+  --on-accent: #fcf8f0;
+  --table: #e9dcc5;
+  --agreed: #2c6a3c;
+  --error: #a2301d;
+  --seat-1: #0b5d5e;
+  --seat-2: #2b2a72;
+  --seat-3: #8a5a00;
+  --seat-4: #6b1a2e;
+  --seat-5: #5f6672;
+  --seat-6: #8f3208;
+  --seat-7: #6a3a93;
+  --on-seat: #fcf8f0;
+  --plate: #fcf8f0;
+  --on-plate: #2b1f16;
+  --cv-paper: #ffffff;
+  --cv-ink: #111111;
+  --cv-grey: #5e5e5e;
+  --cv-rule: #767676;
+  --cv-faint: #e3e3e3;
+}

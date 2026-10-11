@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* Tailwind reads the tokens. Its stock palette, shadows and radii are switched off, so a class
+   that is not a token produces nothing. */
+@theme inline {
+  --color-*: initial;
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-hover: var(--hover);
+  --color-hairline: var(--hairline);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
+  --color-table: var(--table);
+  --color-agreed: var(--agreed);
+  --color-error: var(--error);
+  --color-seat-1: var(--seat-1);
+  --color-seat-2: var(--seat-2);
+  --color-seat-3: var(--seat-3);
+  --color-seat-4: var(--seat-4);
+  --color-seat-5: var(--seat-5);
+  --color-seat-6: var(--seat-6);
+  --color-seat-7: var(--seat-7);
+  --color-on-seat: var(--on-seat);
+  --color-plate: var(--plate);
+  --color-on-plate: var(--on-plate);
+  --color-cv-paper: var(--cv-paper);
+  --color-cv-ink: var(--cv-ink);
+  --color-cv-grey: var(--cv-grey);
+  --color-cv-rule: var(--cv-rule);
+  --color-cv-faint: var(--cv-faint);
+
+  --radius-*: initial;
+  --radius-control: var(--radius-control);
+  --radius-card: var(--radius-card);
+  --radius-full: 9999px;
+
+  --shadow-*: initial;
+
+  --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  /* type scale (size / line height): one family, Archivo */
+  --text-meta: 12px;
+  --text-meta--line-height: 16px;
+  --text-bubble: 13px;
+  --text-bubble--line-height: 18px;
+  --text-label: 14px;
+  --text-label--line-height: 20px;
+  --text-chat: 15px;
+  --text-chat--line-height: 24px;
+  --text-body: 16px;
+  --text-body--line-height: 26px;
+  --text-heading: 20px;
+  --text-heading--line-height: 26px;
+  --text-title: 24px;
+  --text-title--line-height: 30px;
+
+  --ease-out: var(--ease);
+}
+
+html {
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 26px;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* keyboard focus: an ink outline with a page-colour gap, on every control.
+   In the base layer, so a component that draws its own focus mark can switch it off with a class. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+/* reduced motion: nothing animates */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation: none !important;
+  }
+}
