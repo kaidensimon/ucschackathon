@@ -1,8 +1,8 @@
-# Council
+# Syndicate
 
 **High-quality AI answers without paying for a frontier model, and without your data ever leaving the building.**
 
-Council runs a group of small and medium open models on one local machine, the **ASUS Ascent GX10**. Instead of
+Syndicate runs a group of small and medium open models on one local machine, the **ASUS Ascent GX10**. Instead of
 trusting a single model, it has several models from different labs answer the same question and debate until they
 agree, and a lie detector checks their claims so hallucinations are caught before they reach the answer. Built for
 the GX10 hackathon.
